@@ -8,7 +8,7 @@
 #define PROGRAMMING_LAYER 1
 
 // sticky-layer
-&sl { release_after_ms = <999999>; };
+&sl { release-after-ms = <999999>; };
 #define NPRG_CM &sl PROGRAMMING_LAYER
 
 #define ___________________NUMBERS_L_________________  &kp N1    &kp N2   &kp N3    &kp N4     &kp N5
@@ -61,9 +61,9 @@
     default_layer {
       bindings = <
         &kp EQUAL ___________________NUMBERS_L_________________ &tog 1  &mo 3 ___________________NUMBERS_R_________________ &kp MINUS
-        &kp TAB   ___________________QWERTY_L1_________________ &none   &none ___________________QWERTY_R1_________________ &kp BSLH
-        &kp ESC   ___________________QWERTY_L2_________________ &none   &none ___________________QWERTY_R2_________________ &kp SQT
-        &kp LSHFT ___________________QWERTY_L3_________________               ___________________QWERTY_R3_________________ &kp RSHFT
+        &kp TAB   ___________________NORMAN_L1_________________ &none   &none ___________________NORMAN_R1_________________ &kp BSLH
+        &kp ESC   ___________________NORMAN_L2_________________ &none   &none ___________________NORMAN_R2_________________ &kp SQT
+        &kp LSHFT ___________________NORMAN_L3_________________               ___________________NORMAN_R3_________________ &kp RSHFT
         &mo 2     &kp GRAVE &kp CAPS &kp LEFT  &kp RIGHT                             &kp UP &kp DOWN  &kp LBKT &kp RBKT     &mo 2
 
                  &kp LCTRL  &kp LALT &kp LGUI  &kp RCTRL
