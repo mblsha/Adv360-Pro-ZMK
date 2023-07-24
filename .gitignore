@@ -1,1 +1,3 @@
 /firmware/*.uf2
+/firmware/*.dts
+/firmware/*.dts.pre
