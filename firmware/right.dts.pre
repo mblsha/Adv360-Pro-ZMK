@@ -1347,7 +1347,7 @@
 
 
 &sl { release_after_ms = <999999>; };
-# 31 "/app/config/adv360.keymap"
+# 43 "/app/config/adv360.keymap"
 / {
     behaviors {
 # 1 "/app/config/macros.dtsi" 1
@@ -1387,7 +1387,7 @@
     #binding-cells = <0>;
     bindings = <&kp (0x02 << 24 | ((((0x07) << 16) | (0x0E))))>, <&kp ((((0x07) << 16) | (0x0C)))>, <&kp ((((0x07) << 16) | (0x11)))>, <&kp ((((0x07) << 16) | (0x08)))>, <&kp ((((0x07) << 16) | (0x16)))>, <&kp ((((0x07) << 16) | (0x0C)))>, <&kp ((((0x07) << 16) | (0x16)))>;
   };
-# 34 "/app/config/adv360.keymap" 2
+# 46 "/app/config/adv360.keymap" 2
 
       hm: homerow_mods {
           compatible = "zmk,behavior-hold-tap";

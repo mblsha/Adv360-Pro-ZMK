@@ -5,11 +5,11 @@
 #include <dt-bindings/zmk/backlight.h>
 
 #define NORMAN_LAYER 0
-#define NORMAL_PROGRAMMING_LAYER 1
+#define PROGRAMMING_LAYER 1
 
 // sticky-layer
 &sl { release_after_ms = <999999>; };
-#define NPRG_CM &sl NORMAL_PROGRAMMING_LAYER
+#define NPRG_CM &sl PROGRAMMING_LAYER
 
 #define ___________________NUMBERS_L_________________  &kp N1    &kp N2   &kp N3    &kp N4     &kp N5
 #define ___________________NUMBERS_R_________________  &kp N6    &kp N7   &kp N8    &kp N9     &kp N0
@@ -27,6 +27,18 @@
 #define ___________________NORMAN_R1_________________  &kp J     &kp U    &kp R     &kp L      &kp ESC
 #define ___________________NORMAN_R2_________________  &kp Y     &kp N    &kp I     &kp O      &kp H
 #define ___________________NORMAN_R3_________________  &kp P     &kp M    NPRG_CM   &kp DOT    &kp FSLH
+
+// %  │  &  │  ?  │  +  │  @     $  │  _  │  [  │  ]  │  !
+//────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
+// /  │  (  │  =  │  ;  │  {     }  │  :  │  *  │  )  │  -
+//────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
+// ~  │  `  │  ^  │  "  │  |     \  │  ,  │  #  │  '  │
+#define ___________________PROG___L1_________________  &kp PRCNT &kp AMPS  &kp QMARK &kp PLUS &kp AT
+#define ___________________PROG___L2_________________  &kp FSLH  &kp LPAR  &kp EQUAL &kp SEMI &kp LBRC
+#define ___________________PROG___L3_________________  &kp TILDE &kp GRAVE &kp CARET &kp DQT  &kp PIPE
+#define ___________________PROG___R1_________________  &kp DLLR  &kp UNDER &kp LBKT  &kp RBKT &kp EXCL
+#define ___________________PROG___R2_________________  &kp RBRC  &kp COLON &kp STAR  &kp RPAR &kp MINUS
+#define ___________________PROG___R3_________________  &kp BSLH  &kp COMMA &kp HASH  &kp SQT  &none
 
 / {
     behaviors {
