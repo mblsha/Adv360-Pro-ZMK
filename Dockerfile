@@ -1,5 +1,7 @@
 FROM docker.io/zmkfirmware/zmk-build-arm:stable
 
+# RUN apt-get update && apt-get install ripgrep fish neovim
+
 WORKDIR /app
 
 COPY config/west.yml config/west.yml
