@@ -5,7 +5,14 @@
 #include <dt-bindings/zmk/backlight.h>
 
 #define NORMAN_LAYER 0
+#define KEYPAD_LAYER 1
 #define PROGRAMMING_LAYER 1
+#define FN_LAYER 2
+#define MOD_LAYER 3
+
+#define TOG_KP &tog KEYPAD_LAYER
+#define MO_FN  &mo FN_LAYER
+#define MO_MOD &mo MOD_LAYER
 
 // sticky-layer
 &sl { release-after-ms = <999999>; };
@@ -60,11 +67,11 @@
 
     default_layer {
       bindings = <
-        &kp EQUAL ___________________NUMBERS_L_________________ &tog 1  &mo 3 ___________________NUMBERS_R_________________ &kp MINUS
-        &kp TAB   ___________________NORMAN_L1_________________ &none   &none ___________________NORMAN_R1_________________ &kp BSLH
-        &kp ESC   ___________________NORMAN_L2_________________ &none   &none ___________________NORMAN_R2_________________ &kp SQT
-        &kp LSHFT ___________________NORMAN_L3_________________               ___________________NORMAN_R3_________________ &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT  &kp RIGHT                             &kp UP &kp DOWN  &kp LBKT &kp RBKT     &mo 2
+        &kp EQUAL ___________________NUMBERS_L_________________ TOG_KP  MO_MOD ___________________NUMBERS_R_________________ &kp MINUS
+        &kp TAB   ___________________NORMAN_L1_________________ &none   &none  ___________________NORMAN_R1_________________ &kp BSLH
+        &kp ESC   ___________________NORMAN_L2_________________ &none   &none  ___________________NORMAN_R2_________________ &kp SQT
+        &kp LSHFT ___________________NORMAN_L3_________________                ___________________NORMAN_R3_________________ &kp RSHFT
+        MO_FN     &kp GRAVE &kp CAPS &kp LEFT  &kp RIGHT                              &kp UP &kp DOWN  &kp LBKT &kp RBKT     MO_FN
 
                  &kp LCTRL  &kp LALT &kp LGUI  &kp RCTRL
                             &kp HOME &kp PG_UP
@@ -73,11 +80,11 @@
     };
     keypad {
       bindings = <
-        &kp EQUAL ___________________NUMBERS_L_________________ &trans  &mo 3 &kp N6 &kp KP_NUM &kp KP_EQUAL &kp KP_DIVIDE &kp KP_MULTIPLY &kp MINUS
-        &kp TAB   ___________________QWERTY_L1_________________ &none   &none &kp Y  &kp KP_N7  &kp KP_N8    &kp KP_N9     &kp KP_MINUS    &kp BSLH
-        &kp ESC   ___________________QWERTY_L2_________________ &none   &none &kp H  &kp KP_N4  &kp KP_N5    &kp KP_N6     &kp KP_PLUS     &kp SQT
-        &kp LSHFT ___________________QWERTY_L3_________________               &kp N  &kp KP_N1  &kp KP_N2    &kp KP_N3     &kp KP_ENTER    &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT  &kp RIGHT                             &kp UP     &kp DOWN     &kp KP_DOT    &kp RBKT        &mo 2
+        &kp EQUAL ___________________NUMBERS_L_________________ &trans  MO_MOD &kp N6 &kp KP_NUM &kp KP_EQUAL &kp KP_DIVIDE &kp KP_MULTIPLY &kp MINUS
+        &kp TAB   ___________________QWERTY_L1_________________ &none   &none  &kp Y  &kp KP_N7  &kp KP_N8    &kp KP_N9     &kp KP_MINUS    &kp BSLH
+        &kp ESC   ___________________QWERTY_L2_________________ &none   &none  &kp H  &kp KP_N4  &kp KP_N5    &kp KP_N6     &kp KP_PLUS     &kp SQT
+        &kp LSHFT ___________________QWERTY_L3_________________                &kp N  &kp KP_N1  &kp KP_N2    &kp KP_N3     &kp KP_ENTER    &kp RSHFT
+        MO_FN     &kp GRAVE &kp CAPS &kp LEFT  &kp RIGHT                              &kp UP     &kp DOWN     &kp KP_DOT    &kp RBKT        MO_FN
 
                   &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL
                             &kp HOME &kp PG_UP
@@ -86,11 +93,11 @@
     };
     fn {
       bindings = <
-        &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6  &tog 1  &mo 3 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
-        &trans &trans &trans &trans &trans &trans  &none   &none &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans &trans  &none   &none &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans &trans                &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans                              &trans &trans &trans  &trans  &trans
+        &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6  &tog 1  MO_MOD &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
+        &trans &trans &trans &trans &trans &trans  &none   &none  &trans &trans &trans &trans  &trans  &trans
+        &trans &trans &trans &trans &trans &trans  &none   &none  &trans &trans &trans &trans  &trans  &trans
+        &trans &trans &trans &trans &trans &trans                 &trans &trans &trans &trans  &trans  &trans
+        &trans &trans &trans &trans &trans                               &trans &trans &trans  &trans  &trans
 
                &trans &trans &trans &trans
                       &trans &trans
