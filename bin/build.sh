@@ -15,7 +15,9 @@ west build -s zmk/app -d build/right -b adv360_right -- -DZMK_CONFIG="${PWD}/con
 cat build/right/zephyr/.config | grep -v "^#" | grep -v "^$"
 # Rename zmk.uf2
 cp build/left/zephyr/zmk.uf2  ./firmware/${TIMESTAMP}-left.uf2
+cp build/left/zephyr/zmk.uf2  ./firmware/left.uf2
 cp build/right/zephyr/zmk.uf2 ./firmware/${TIMESTAMP}-right.uf2
+cp build/right/zephyr/zmk.uf2 ./firmware/right.uf2
 
 # can also copy .dts.pre
 cp build/left/zephyr/zephyr.dts      ./firmware/${TIMESTAMP}-left.dts
