@@ -1334,9 +1334,9 @@
 # 5 "/app/config/adv360.keymap" 2
 # 1 "/app/zmk/app/include/dt-bindings/zmk/backlight.h" 1 3 4
 # 6 "/app/config/adv360.keymap" 2
-# 19 "/app/config/adv360.keymap"
+# 22 "/app/config/adv360.keymap"
 &sl { release-after-ms = <999999>; };
-# 71 "/app/config/adv360.keymap"
+# 82 "/app/config/adv360.keymap"
 / {
   behaviors {
 # 1 "/app/config/macros.dtsi" 1
@@ -1376,8 +1376,10 @@
     #binding-cells = <0>;
     bindings = <&kp (0x02 << 24 | ((((0x07) << 16) | (0x0E))))>, <&kp ((((0x07) << 16) | (0x0C)))>, <&kp ((((0x07) << 16) | (0x11)))>, <&kp ((((0x07) << 16) | (0x08)))>, <&kp ((((0x07) << 16) | (0x16)))>, <&kp ((((0x07) << 16) | (0x0C)))>, <&kp ((((0x07) << 16) | (0x16)))>;
   };
-# 74 "/app/config/adv360.keymap" 2
-# 102 "/app/config/adv360.keymap"
+# 85 "/app/config/adv360.keymap" 2
+
+    NPRG_SP: NPRG_SP { label = "ZM_NPRG_SP"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x36))) &kp ((((0x07) << 16) | (0x2C))) &to 0>; };
+# 115 "/app/config/adv360.keymap"
     SPRG_H02: SPRG_H02 { label = "ZM_SPRG_H02"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &to 0>; };
     SPRG_H04: SPRG_H04 { label = "ZM_SPRG_H04"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
     SPRG_H05: SPRG_H05 { label = "ZM_SPRG_H05"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &kp ((((0x07) << 16) | (0x14))) &to 0>; };
@@ -1395,7 +1397,7 @@
     SPRG_L05: SPRG_L05 { label = "ZM_SPRG_L05"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &to 0>; };
     SPRG_L08: SPRG_L08 { label = "ZM_SPRG_L08"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x36))))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
     SPRG_L09: SPRG_L09 { label = "ZM_SPRG_L09"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x37))))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
-# 133 "/app/config/adv360.keymap"
+# 146 "/app/config/adv360.keymap"
     CPRG_H04: CPRG_H04 { label = "ZM_CPRG_H04"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &to 0>; };
     CPRG_H05: CPRG_H05 { label = "ZM_CPRG_H05"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &to 0>; };
 
@@ -1429,22 +1431,22 @@
 
                   &kp ((((0x07) << 16) | (0x2C))) &none &none &kp (((((0x07) << 16) | (0x29))))
                             &none &none
-        &sl 1 &kp (((((0x07) << 16) | (0x2A)))) &none &kp (((((0x07) << 16) | (0x4E)))) &kp (((((0x07) << 16) | (0x28)))) &kp ((((0x07) << 16) | (0x2C)))
+        &mo 4 &kp (((((0x07) << 16) | (0x2A)))) &none &tog 4 &kp (((((0x07) << 16) | (0x28)))) &kp ((((0x07) << 16) | (0x2C)))
       >;
     };
 
     programming_layer {
 
       bindings = <
-        &none &none &none &none &none &none &trans &trans &none &none &none &none &none &none
+        &none &none &none &none &none &none &none &none &none &none &none &none &none &none
         &none &kp (((0x02 << 24 | (((0x07) << 16) | (0x22))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x38))))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &none &none &kp (((0x02 << 24 | (((0x07) << 16) | (0x21))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2D))))) &kp (((((0x07) << 16) | (0x2F)))) &kp (((((0x07) << 16) | (0x30)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1E))))) &none
         &mo 3 &kp (((((0x07) << 16) | (0x38)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x26))))) &kp ((((0x07) << 16) | (0x2E))) &kp (((((0x07) << 16) | (0x33)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2F))))) &none &none &kp (((0x02 << 24 | (((0x07) << 16) | (0x30))))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x25))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x27))))) &kp ((((0x07) << 16) | (0x2D))) &mo 3
         &mo 2 &kp ((0x02 << 24 | (((0x07) << 16) | (0x35)))) &kp ((((0x07) << 16) | (0x35))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x23)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x34))))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &kp (((((0x07) << 16) | (0x31)))) &kp ((((0x07) << 16) | (0x36))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x20)))) &kp (((((0x07) << 16) | (0x34)))) &none &mo 2
-        &trans &to 0 &to 0 &trans &trans &trans &trans &to 0 &to 0 &trans
+        &to 0 &to 0 &to 0 &trans &trans &trans &trans &to 0 &to 0 &to 0
 
-                  &trans &trans &trans &trans
+                  &NPRG_SP &trans &trans &trans
                             &trans &trans
-        &to 0 &trans &trans &trans &trans &trans
+        &to 0 &trans &trans &trans &trans &NPRG_SP
       >;
     };
 
@@ -1478,13 +1480,13 @@
       >;
     };
 
-    fn {
+    lower {
 
       bindings = <
-        &kp ((((0x07) << 16) | (0x3A))) &kp ((((0x07) << 16) | (0x3B))) &kp ((((0x07) << 16) | (0x3C))) &kp ((((0x07) << 16) | (0x3D))) &kp ((((0x07) << 16) | (0x3E))) &kp ((((0x07) << 16) | (0x3F))) &trans &trans &kp ((((0x07) << 16) | (0x40))) &kp ((((0x07) << 16) | (0x41))) &kp ((((0x07) << 16) | (0x42))) &kp ((((0x07) << 16) | (0x43))) &kp ((((0x07) << 16) | (0x44))) &kp ((((0x07) << 16) | (0x45)))
         &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans
-        &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans
-        &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+        &none &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x51)))) &kp (((((0x07) << 16) | (0x52)))) &kp (((((0x07) << 16) | (0x4F)))) &kp ((((0x07) << 16) | (0x1D))) &none &none &kp ((((0x07) << 16) | (0x0D))) &kp ((((0x07) << 16) | (0x4A))) &kp (((((0x07) << 16) | (0x4E)))) &kp (((((0x07) << 16) | (0x4B)))) &kp ((((0x07) << 16) | (0x4D))) &kp (((((0x07) << 16) | (0x4C))))
+        &none &kp ((((0x07) << 16) | (0x4A))) &kp (((((0x07) << 16) | (0x4B)))) &kp (((((0x07) << 16) | (0x4E)))) &kp ((((0x07) << 16) | (0x4D))) &none &none &none &kp ((((0x07) << 16) | (0x1D))) &kp (((((0x07) << 16) | (0x50)))) &kp (((((0x07) << 16) | (0x51)))) &kp (((((0x07) << 16) | (0x52)))) &kp (((((0x07) << 16) | (0x4F)))) &none
+        &kp (((((0x07) << 16) | (0xE1)))) &none &none &none &none &none &none &none &none &none &none &kp (((((0x07) << 16) | (0xE5))))
         &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 
                   &trans &trans &trans &trans

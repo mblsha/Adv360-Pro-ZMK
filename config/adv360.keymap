@@ -8,12 +8,15 @@
 #define PROGRAMMING_LAYER 1
 #define PROGRAMMING_LAYER_SHIFT 2
 #define PROGRAMMING_LAYER_CTRL 3
-#define FN_LAYER 4
+#define LOWER_LAYER 4
 #define MOD_LAYER 5
 #define GUI_LAYER 1
 
 #define MO_FN  &mo PROGRAMMING_LAYER
 #define MO_MOD &mo MOD_LAYER
+
+#define MO_LOWER &mo LOWER_LAYER
+#define TOG_LOWER &tog LOWER_LAYER
 
 // sticky-layer
 &sl { release-after-ms = <999999>; };
@@ -37,6 +40,14 @@
 #define ____________________NORMAN__R2___________________  &kp Y     &kp N     &kp I     &kp O     &kp H
 #define ____________________NORMAN__R3___________________  &kp P     &kp M     NPRG_CM   &kp DOT   &kp FSLH
 
+#define ______________________________LOWER___L1___________________  &none     &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT    &kp Z
+#define ____________________LOWER___R1__________________________     &kp J     &kp HOME     &kp PGDN     &kp PGUP     &kp END      &kp DEL
+#define ______________________________LOWER___L2___________________  &none     &kp HOME     &kp PGUP     &kp PGDN     &kp END      &none
+#define ____________________LOWER___R2__________________________     &kp Z     &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT    &none
+#define ______________________________LOWER___L3___________________  &kp LSHFT &none        &none        &none        &none        &none
+#define ____________________LOWER___R3__________________________     &none     &none        &none        &none        &none        &kp RSHFT
+// #define ______________________________LOWER___L3___________________  &kp LSHFT &kp LG(LEFT) &kp LG(UP)   &kp LG(DOWN) &kp LG(RGHT) &none
+// #define ____________________LOWER___R3__________________________     &kp P     &kp LA(LEFT) &kp LA(DOWN) &kp LA(UP)   &kp LA(RGHT) &kp RSHFT
 
 // https://github.com/rastasheep/zmk-config/commit/b8607d4beb15a29671cf7921a1fe5060a7740c6b
 #define HYP LS(LC(LA(LGUI)))
@@ -71,6 +82,8 @@
 / {
   behaviors {
     #include "macros.dtsi"
+
+    ZMK_MACRO(NPRG_SP, bindings = <&kp COMMA  &kp SPACE    STCH_EX>;)
 
 // use Mod-Morph to combine these to a single layer?  https://zmk.dev/docs/behaviors/mod-morph
 // %  │  &  │  ?  │  +  │  @     $  │  _  │  [  │  ]  │  !
@@ -163,22 +176,22 @@
 
                   &kp SPACE &none     &none     &kp ESC
                             &none     &none
-        NPRG_CM   &kp BSPC  &none     &kp PG_DN &kp ENTER &kp SPACE
+        MO_LOWER  &kp BSPC  &none     TOG_LOWER &kp ENTER &kp SPACE
       >;
     };
     // 1
     programming_layer {
       //_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
       bindings = <
-        &none     &none     &none     &none     &none     &none     &trans      &trans    &none     &none      &none     &none     &none    &none
+        &none     &none     &none     &none     &none     &none     &none       &none     &none     &none      &none     &none     &none    &none
         &none     ____________________PROG____L1___________________ &none       &none     ____________________PROG____R1___________________ &none
         MO_CPRG   ____________________PROG____L2___________________ &none       &none     ____________________PROG____R2___________________ MO_CPRG
         MO_SPRG   ____________________PROG____L3___________________                       ____________________PROG____R3___________________ MO_SPRG
-        &trans    STCH_EX   STCH_EX   &trans    &trans                                              &trans    &trans    STCH_EX  STCH_EX    &trans
+        STCH_EX   STCH_EX   STCH_EX   &trans    &trans                                              &trans     &trans    STCH_EX   STCH_EX  STCH_EX
 
-                  &trans    &trans    &trans    &trans
+                  &NPRG_SP  &trans    &trans    &trans
                             &trans    &trans
-        STCH_EX   &trans    &trans    &trans    &trans   &trans
+        STCH_EX   &trans    &trans    &trans    &trans   &NPRG_SP
       >;
     };
     // 2
@@ -212,13 +225,13 @@
       >;
     };
     // 4
-    fn {
+    lower {
       //_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
       bindings = <
-        &kp F1    &kp F2    &kp F3    &kp F4    &kp F5    &kp F6    &trans      &trans    &kp F7    &kp F8    &kp F9    &kp F10   &kp F11   &kp F12
         &trans    &trans    &trans    &trans    &trans    &trans    &none       &none     &trans    &trans    &trans    &trans    &trans    &trans
-        &trans    &trans    &trans    &trans    &trans    &trans    &none       &none     &trans    &trans    &trans    &trans    &trans    &trans
-        &trans    &trans    &trans    &trans    &trans    &trans                          &trans    &trans    &trans    &trans    &trans    &trans
+        ______________________________LOWER___L1___________________ &none       &none     ____________________LOWER___R1__________________________
+        ______________________________LOWER___L2___________________ &none       &none     ____________________LOWER___R2__________________________
+        ______________________________LOWER___L3___________________                       ____________________LOWER___R3__________________________
         &trans    &trans    &trans    &trans    &trans                                              &trans    &trans    &trans    &trans    &trans
 
                   &trans    &trans    &trans    &trans
