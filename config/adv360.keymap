@@ -12,7 +12,6 @@
 #define MOD_LAYER 5
 #define GUI_LAYER 1
 
-#define MO_FN  &mo PROGRAMMING_LAYER
 #define MO_MOD &mo MOD_LAYER
 
 #define MO_LOWER &mo LOWER_LAYER
@@ -63,6 +62,9 @@
 #define CTL_ESC &mt LCTRL ESC
 #define CTL_ENT &mt RCTRL ENTER
 
+// presumes Ctrl-E will go to end of line
+#define GEND_LINE &kp LC(E)
+
 // RGB LEDs: on top of the thumb clusters
 #define RGBLED_TG &rgb_ug RGB_MEFS_CMD 5
 #define BOOTLOADR &bootloader
@@ -85,31 +87,37 @@
     ZMK_MACRO(NPRG_SP, bindings = <&kp COMMA  &kp SPACE    STCH_EX>;)
 
 // use Mod-Morph to combine these to a single layer?  https://zmk.dev/docs/behaviors/mod-morph
-// %  │  &  │  ?  │  +  │  @     $  │  _  │  [  │  ]  │  !
-//────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
-// /  │  (  │  =  │  ;  │  {     }  │  :  │  *  │  )  │  -
-//────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
-// ~  │  `  │  ^  │  "  │  |     \  │  ,  │  #  │  '  │
+//
+//↘↩ │  %  │  &  │  ?  │  +  │  @     $  │  _  │  [  │  ]  │  !  │ ↘␣{↩
+//─────┼─────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼─────┼─────
+//     │  /  │  (  │  =  │  ;  │  {     }  │  :  │  *  │  )  │  -  │
+//─────┼─────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼─────┼─────
+//     │  ~  │  `  │  ^  │  "  │  |     \  │  ,  │  #  │  '  │     │
 #define ____________________PROG____L1___________________  &kp PRCNT &kp AMPS  &kp QMARK &kp PLUS  &kp AT
 #define ____________________PROG____L2___________________  &kp FSLH  &kp LPAR  &kp EQUAL &kp SEMI  &kp LBRC
 #define ____________________PROG____L3___________________  &kp TILDE &kp GRAVE &kp CARET &kp DQT   &kp PIPE
-
 #define ____________________PROG____R1___________________  &kp DLLR  &kp UNDER &kp LBKT  &kp RBKT  &kp EXCL
 #define ____________________PROG____R2___________________  &kp RBRC  &kp COLON &kp STAR  &kp RPAR  &kp MINUS
 #define ____________________PROG____R3___________________  &kp BSLH  &kp COMMA &kp HASH  &kp SQT   &none
 
-//    1    2     3     4     5      6    7     8     9     10
-// H     │ &&  │     │ +=  │ @q        │     │ []  │ ->  │ !=
-//   ────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
-// M  /= │ ()  │ ==  │     │ {}        │ ::  │     │     │ -=
-//   ────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
-// L     │     │     │     │ ||        │     │ <=  │ >=  │
+    ZMK_MACRO(NPRG_H00, bindings = <GEND_LINE &kp ENTER STCH_EX>;)
+    ZMK_MACRO(NPRG_H11, bindings = <GEND_LINE &kp SPACE &kp LBRC  &kp ENTER STCH_EX>;)
+
+//          1     2     3     4     5      6    7     8     9     10
+// H ↘;↩│     │ &&  │     │ +=  │ @q        │     │ []  │ ->  │ !=  │ ↘␣{
+//   ─────┼─────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼─────┼─────
+// M      │ /=  │ ()  │ ==  │     │ {}        │ ::  │     │     │ -=  │
+//   ─────┼─────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼─────┼─────
+// L      │     │     │     │     │ ||        │     │ <=  │ >=  │     │
 #define ____________________PROG___SL1___________________  &none     &SPRG_H02 &none     &SPRG_H04 &SPRG_H05
 #define ____________________PROG___SL2___________________  &SPRG_M01 &SPRG_M02 &SPRG_M03 &none     &SPRG_M05
 #define ____________________PROG___SL3___________________  &none     &none     &none     &none     &SPRG_L05
 #define ____________________PROG___SR1___________________  &none     &none     &SPRG_H08 &SPRG_H09 &SPRG_H10
 #define ____________________PROG___SR2___________________  &none     &SPRG_M07 &none     &none     &SPRG_M10
 #define ____________________PROG___SR3___________________  &none     &none     &SPRG_L08 &SPRG_L09 &none
+
+    ZMK_MACRO(SPRG_H00, bindings = <GEND_LINE &kp SEMI  &kp ENTER STCH_EX>;)
+    ZMK_MACRO(SPRG_H11, bindings = <GEND_LINE &kp SPACE &kp LBRC  STCH_EX>;)
 
     ZMK_MACRO(SPRG_H02, bindings = <&kp AMPS  &kp AMPS    STCH_EX>;)
     ZMK_MACRO(SPRG_H04, bindings = <&kp PLUS  &kp EQUAL   STCH_EX>;)
@@ -129,18 +137,20 @@
     ZMK_MACRO(SPRG_L08, bindings = <&kp LT    &kp EQUAL   STCH_EX>;)
     ZMK_MACRO(SPRG_L09, bindings = <&kp GT    &kp EQUAL   STCH_EX>;)
 
-//    1    2     3     4     5      6    7     8     9     10
-// H     │     │     │ ++  │ @@        │     │     │     │
-//   ────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
-// M     │     │ =>  │     │           │ :=  │     │     │ --
-//   ────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
-// L     │     │     │     │           │     │     │     │
+//          1     2     3     4     5      6    7     8     9     10
+// H ↘:↩│     │     │     │ ++  │ @@        │     │     │     │     │
+//   ─────┼─────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼─────┼─────
+// M      │     │     │ =>  │     │           │ :=  │     │     │ --  │
+//   ─────┼─────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼─────┼─────
+// L      │     │     │     │     │           │     │     │     │     │
 #define ____________________PROG___CL1___________________  &none     &none     &none     &CPRG_H04 &CPRG_H05
 #define ____________________PROG___CL2___________________  &none     &none     &CPRG_M03 &none     &none
 #define ____________________PROG___CL3___________________  &none     &none     &none     &none     &none
 #define ____________________PROG___CR1___________________  &none     &none     &none     &none     &none
 #define ____________________PROG___CR2___________________  &none     &CPRG_M07 &none     &none     &CPRG_M10
 #define ____________________PROG___CR3___________________  &none     &none     &none     &none     &none
+
+    ZMK_MACRO(CPRG_H00, bindings = <GEND_LINE &kp COLON &kp ENTER STCH_EX>;)
 
     ZMK_MACRO(CPRG_H04, bindings = <&kp PLUS  &kp PLUS    STCH_EX>;)
     ZMK_MACRO(CPRG_H05, bindings = <&kp AT    &kp AT      STCH_EX>;)
@@ -171,7 +181,7 @@
         &kp TAB   ____________________NORMAN__L1___________________ &none       &none     ____________________NORMAN__R1___________________ &kp BSLH
         CTL_ESC   ____________________NORMAN__L2___________________ &none       &none     ____________________NORMAN__R2___________________ CTL_ENT
         &kp LSHFT ____________________NORMAN__L3___________________                       ____________________NORMAN__R3___________________ &kp RSHFT
-        MO_FN     GUI_L     HYPER_L   &kp LALT  &kp LGUI                                            &kp RGUI  &kp RALT  HYPER_R   GUI_R     MO_FN
+        NPRG_CM   GUI_L     HYPER_L   &kp LALT  &kp LGUI                                            &kp RGUI  &kp RALT  HYPER_R   GUI_R     NPRG_CM
 
                   &kp SPACE &none     &none     &kp ESC
                             &none     &none
@@ -183,7 +193,7 @@
       //_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
       bindings = <
         &none     &none     &none     &none     &none     &none     &none       &none     &none     &none      &none     &none     &none    &none
-        &none     ____________________PROG____L1___________________ &none       &none     ____________________PROG____R1___________________ &none
+        &NPRG_H00 ____________________PROG____L1___________________ &none       &none     ____________________PROG____R1___________________ &NPRG_H11
         MO_CPRG   ____________________PROG____L2___________________ &none       &none     ____________________PROG____R2___________________ MO_CPRG
         MO_SPRG   ____________________PROG____L3___________________                       ____________________PROG____R3___________________ MO_SPRG
         STCH_EX   STCH_EX   STCH_EX   &trans    &trans                                              &trans     &trans    STCH_EX   STCH_EX  STCH_EX
@@ -198,7 +208,7 @@
       //_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
       bindings = <
         &trans    &trans    &trans    &trans    &trans    &trans    &none       &none     &trans    &trans    &trans    &trans    &trans    &trans
-        &trans    ____________________PROG___SL1___________________ &none       &none     ____________________PROG___SR1___________________ &trans
+        &SPRG_H00 ____________________PROG___SL1___________________ &none       &none     ____________________PROG___SR1___________________ &SPRG_H11
         &trans    ____________________PROG___SL2___________________ &none       &none     ____________________PROG___SR2___________________ &trans
         &trans    ____________________PROG___SL3___________________                       ____________________PROG___SR3___________________ &trans
         &trans    &trans    &trans    &trans    &trans                                              &trans    &trans    &trans    &trans    &trans
@@ -213,7 +223,7 @@
       //_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
       bindings = <
         &trans    &trans    &trans    &trans    &trans    &trans    &none       &none     &trans    &trans    &trans    &trans    &trans    &trans
-        &trans    ____________________PROG___CL1___________________ &none       &none     ____________________PROG___CR1___________________ &trans
+        &CPRG_H00 ____________________PROG___CL1___________________ &none       &none     ____________________PROG___CR1___________________ &trans
         &trans    ____________________PROG___CL2___________________ &none       &none     ____________________PROG___CR2___________________ &trans
         &trans    ____________________PROG___CL3___________________                       ____________________PROG___CR3___________________ &trans
         &trans    &trans    &trans    &trans    &trans                                              &trans    &trans    &trans    &trans    &trans

@@ -571,7 +571,7 @@
 			compatible = "zmk,behavior-transparent";
 			label = "TRANS";
 			#binding-cells = < 0x0 >;
-			phandle = < 0x12 >;
+			phandle = < 0x14 >;
 		};
 		none: behavior_none {
 			compatible = "zmk,behavior-none";
@@ -625,19 +625,19 @@
 			label = "BOOTLOAD";
 			type = < 0x57 >;
 			#binding-cells = < 0x0 >;
-			phandle = < 0x29 >;
+			phandle = < 0x2e >;
 		};
 		rgb_ug: behavior_rgb_underglow {
 			compatible = "zmk,behavior-rgb-underglow";
 			label = "RGB_UG";
 			#binding-cells = < 0x2 >;
-			phandle = < 0x2a >;
+			phandle = < 0x2f >;
 		};
 		bt: behavior_bluetooth {
 			compatible = "zmk,behavior-bluetooth";
 			label = "BLUETOOTH";
 			#binding-cells = < 0x2 >;
-			phandle = < 0x28 >;
+			phandle = < 0x2d >;
 		};
 		ext_power: behavior_ext_power {
 			compatible = "zmk,behavior-ext-power";
@@ -648,7 +648,7 @@
 			compatible = "zmk,behavior-backlight";
 			label = "BCKLGHT";
 			#binding-cells = < 0x2 >;
-			phandle = < 0x2b >;
+			phandle = < 0x30 >;
 		};
 		macro_tap: macro_control_mode_tap {
 			compatible = "zmk,macro-control-mode-tap";
@@ -721,147 +721,182 @@
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x70036 &kp 0x7002c &to 0x0 >;
+			phandle = < 0x15 >;
+		};
+		NPRG_H00: NPRG_H00 {
+			label = "ZM_NPRG_H00";
+			compatible = "zmk,behavior-macro";
+			#binding-cells = < 0x0 >;
+			bindings = < &kp 0x1070008 &kp 0x70028 &to 0x0 >;
+			phandle = < 0x12 >;
+		};
+		NPRG_H11: NPRG_H11 {
+			label = "ZM_NPRG_H11";
+			compatible = "zmk,behavior-macro";
+			#binding-cells = < 0x0 >;
+			bindings = < &kp 0x1070008 &kp 0x7002c &kp 0x207002f &kp 0x70028 &to 0x0 >;
 			phandle = < 0x13 >;
+		};
+		SPRG_H00: SPRG_H00 {
+			label = "ZM_SPRG_H00";
+			compatible = "zmk,behavior-macro";
+			#binding-cells = < 0x0 >;
+			bindings = < &kp 0x1070008 &kp 0x70033 &kp 0x70028 &to 0x0 >;
+			phandle = < 0x16 >;
+		};
+		SPRG_H11: SPRG_H11 {
+			label = "ZM_SPRG_H11";
+			compatible = "zmk,behavior-macro";
+			#binding-cells = < 0x0 >;
+			bindings = < &kp 0x1070008 &kp 0x7002c &kp 0x207002f &to 0x0 >;
+			phandle = < 0x1d >;
 		};
 		SPRG_H02: SPRG_H02 {
 			label = "ZM_SPRG_H02";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x2070024 &kp 0x2070024 &to 0x0 >;
-			phandle = < 0x14 >;
+			phandle = < 0x17 >;
 		};
 		SPRG_H04: SPRG_H04 {
 			label = "ZM_SPRG_H04";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x207002e &kp 0x7002e &to 0x0 >;
-			phandle = < 0x15 >;
+			phandle = < 0x18 >;
 		};
 		SPRG_H05: SPRG_H05 {
 			label = "ZM_SPRG_H05";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x207001f &kp 0x70014 &to 0x0 >;
-			phandle = < 0x16 >;
+			phandle = < 0x19 >;
 		};
 		SPRG_H08: SPRG_H08 {
 			label = "ZM_SPRG_H08";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x7002f &kp 0x70030 &to 0x0 >;
-			phandle = < 0x17 >;
+			phandle = < 0x1a >;
 		};
 		SPRG_H09: SPRG_H09 {
 			label = "ZM_SPRG_H09";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x7002d &kp 0x2070037 &to 0x0 >;
-			phandle = < 0x18 >;
+			phandle = < 0x1b >;
 		};
 		SPRG_H10: SPRG_H10 {
 			label = "ZM_SPRG_H10";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x207001e &kp 0x7002e &to 0x0 >;
-			phandle = < 0x19 >;
+			phandle = < 0x1c >;
 		};
 		SPRG_M01: SPRG_M01 {
 			label = "ZM_SPRG_M01";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x70038 &kp 0x7002e &to 0x0 >;
-			phandle = < 0x1a >;
+			phandle = < 0x1e >;
 		};
 		SPRG_M02: SPRG_M02 {
 			label = "ZM_SPRG_M02";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x2070026 &kp 0x2070027 &to 0x0 >;
-			phandle = < 0x1b >;
+			phandle = < 0x1f >;
 		};
 		SPRG_M03: SPRG_M03 {
 			label = "ZM_SPRG_M03";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x7002e &kp 0x7002e &to 0x0 >;
-			phandle = < 0x1c >;
+			phandle = < 0x20 >;
 		};
 		SPRG_M05: SPRG_M05 {
 			label = "ZM_SPRG_M05";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x207002f &kp 0x2070030 &to 0x0 >;
-			phandle = < 0x1d >;
+			phandle = < 0x21 >;
 		};
 		SPRG_M07: SPRG_M07 {
 			label = "ZM_SPRG_M07";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x2070033 &kp 0x2070033 &to 0x0 >;
-			phandle = < 0x1e >;
+			phandle = < 0x22 >;
 		};
 		SPRG_M10: SPRG_M10 {
 			label = "ZM_SPRG_M10";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x7002d &kp 0x7002e &to 0x0 >;
-			phandle = < 0x1f >;
+			phandle = < 0x23 >;
 		};
 		SPRG_L05: SPRG_L05 {
 			label = "ZM_SPRG_L05";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x2070031 &kp 0x2070031 &to 0x0 >;
-			phandle = < 0x20 >;
+			phandle = < 0x24 >;
 		};
 		SPRG_L08: SPRG_L08 {
 			label = "ZM_SPRG_L08";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x2070036 &kp 0x7002e &to 0x0 >;
-			phandle = < 0x21 >;
+			phandle = < 0x25 >;
 		};
 		SPRG_L09: SPRG_L09 {
 			label = "ZM_SPRG_L09";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x2070037 &kp 0x7002e &to 0x0 >;
-			phandle = < 0x22 >;
+			phandle = < 0x26 >;
+		};
+		CPRG_H00: CPRG_H00 {
+			label = "ZM_CPRG_H00";
+			compatible = "zmk,behavior-macro";
+			#binding-cells = < 0x0 >;
+			bindings = < &kp 0x1070008 &kp 0x2070033 &kp 0x70028 &to 0x0 >;
+			phandle = < 0x27 >;
 		};
 		CPRG_H04: CPRG_H04 {
 			label = "ZM_CPRG_H04";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x207002e &kp 0x207002e &to 0x0 >;
-			phandle = < 0x23 >;
+			phandle = < 0x28 >;
 		};
 		CPRG_H05: CPRG_H05 {
 			label = "ZM_CPRG_H05";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x207001f &kp 0x207001f &to 0x0 >;
-			phandle = < 0x24 >;
+			phandle = < 0x29 >;
 		};
 		CPRG_M03: CPRG_M03 {
 			label = "ZM_CPRG_M03";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x7002e &kp 0x2070037 &to 0x0 >;
-			phandle = < 0x25 >;
+			phandle = < 0x2a >;
 		};
 		CPRG_M07: CPRG_M07 {
 			label = "ZM_CPRG_M07";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x2070033 &kp 0x7002e &to 0x0 >;
-			phandle = < 0x26 >;
+			phandle = < 0x2b >;
 		};
 		CPRG_M10: CPRG_M10 {
 			label = "ZM_CPRG_M10";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = < 0x0 >;
 			bindings = < &kp 0x7002d &kp 0x7002d &to 0x0 >;
-			phandle = < 0x27 >;
+			phandle = < 0x2c >;
 		};
 		hm: homerow_mods {
 			compatible = "zmk,behavior-hold-tap";
@@ -876,19 +911,19 @@
 	keymap {
 		compatible = "zmk,keymap";
 		default_layer {
-			bindings = < &kp 0x7002e &kp 0x7001e &kp 0x7001f &kp 0x70020 &kp 0x70021 &kp 0x70022 &mo 0x5 &mo 0x5 &kp 0x70023 &kp 0x70024 &kp 0x70025 &kp 0x70026 &kp 0x70027 &kp 0x7002d &kp 0x7002b &kp 0x70014 &kp 0x7001a &kp 0x70007 &kp 0x70009 &kp 0x7000e &none &none &kp 0x7000d &kp 0x70018 &kp 0x70015 &kp 0x7000f &kp 0x70029 &kp 0x70031 &mt 0x700e0 0x70029 &kp 0x70004 &kp 0x70016 &kp 0x70008 &kp 0x70017 &kp 0x7000a &none &none &kp 0x7001c &kp 0x70011 &kp 0x7000c &kp 0x70012 &kp 0x7000b &mt 0x700e4 0x70028 &kp 0x700e1 &kp 0x7001d &kp 0x7001b &kp 0x70006 &kp 0x70019 &kp 0x70005 &kp 0x70013 &kp 0x70010 &sl 0x1 &kp 0x70037 &kp 0x70038 &kp 0x700e5 &mo 0x1 &kp 0x7002f &mt 0x70700e3 0x70030 &kp 0x700e2 &kp 0x700e3 &kp 0x700e7 &kp 0x700e6 &mt 0x70700e3 0x7002f &kp 0x70030 &mo 0x1 &kp 0x7002c &none &none &kp 0x70029 &none &none &mo 0x4 &kp 0x7002a &none &tog 0x4 &kp 0x70028 &kp 0x7002c >;
+			bindings = < &kp 0x7002e &kp 0x7001e &kp 0x7001f &kp 0x70020 &kp 0x70021 &kp 0x70022 &mo 0x5 &mo 0x5 &kp 0x70023 &kp 0x70024 &kp 0x70025 &kp 0x70026 &kp 0x70027 &kp 0x7002d &kp 0x7002b &kp 0x70014 &kp 0x7001a &kp 0x70007 &kp 0x70009 &kp 0x7000e &none &none &kp 0x7000d &kp 0x70018 &kp 0x70015 &kp 0x7000f &kp 0x70029 &kp 0x70031 &mt 0x700e0 0x70029 &kp 0x70004 &kp 0x70016 &kp 0x70008 &kp 0x70017 &kp 0x7000a &none &none &kp 0x7001c &kp 0x70011 &kp 0x7000c &kp 0x70012 &kp 0x7000b &mt 0x700e4 0x70028 &kp 0x700e1 &kp 0x7001d &kp 0x7001b &kp 0x70006 &kp 0x70019 &kp 0x70005 &kp 0x70013 &kp 0x70010 &sl 0x1 &kp 0x70037 &kp 0x70038 &kp 0x700e5 &sl 0x1 &kp 0x7002f &mt 0x70700e3 0x70030 &kp 0x700e2 &kp 0x700e3 &kp 0x700e7 &kp 0x700e6 &mt 0x70700e3 0x7002f &kp 0x70030 &sl 0x1 &kp 0x7002c &none &none &kp 0x70029 &none &none &mo 0x4 &kp 0x7002a &none &tog 0x4 &kp 0x70028 &kp 0x7002c >;
 		};
 		programming_layer {
-			bindings = < &none &none &none &none &none &none &none &none &none &none &none &none &none &none &none &kp 0x2070022 &kp 0x2070024 &kp 0x2070038 &kp 0x207002e &kp 0x207001f &none &none &kp 0x2070021 &kp 0x207002d &kp 0x7002f &kp 0x70030 &kp 0x207001e &none &mo 0x3 &kp 0x70038 &kp 0x2070026 &kp 0x7002e &kp 0x70033 &kp 0x207002f &none &none &kp 0x2070030 &kp 0x2070033 &kp 0x2070025 &kp 0x2070027 &kp 0x7002d &mo 0x3 &mo 0x2 &kp 0x2070035 &kp 0x70035 &kp 0x2070023 &kp 0x2070034 &kp 0x2070031 &kp 0x70031 &kp 0x70036 &kp 0x2070020 &kp 0x70034 &none &mo 0x2 &to 0x0 &to 0x0 &to 0x0 &trans &trans &trans &trans &to 0x0 &to 0x0 &to 0x0 &NPRG_SP &trans &trans &trans &trans &trans &to 0x0 &trans &trans &trans &trans &NPRG_SP >;
+			bindings = < &none &none &none &none &none &none &none &none &none &none &none &none &none &none &NPRG_H00 &kp 0x2070022 &kp 0x2070024 &kp 0x2070038 &kp 0x207002e &kp 0x207001f &none &none &kp 0x2070021 &kp 0x207002d &kp 0x7002f &kp 0x70030 &kp 0x207001e &NPRG_H11 &mo 0x3 &kp 0x70038 &kp 0x2070026 &kp 0x7002e &kp 0x70033 &kp 0x207002f &none &none &kp 0x2070030 &kp 0x2070033 &kp 0x2070025 &kp 0x2070027 &kp 0x7002d &mo 0x3 &mo 0x2 &kp 0x2070035 &kp 0x70035 &kp 0x2070023 &kp 0x2070034 &kp 0x2070031 &kp 0x70031 &kp 0x70036 &kp 0x2070020 &kp 0x70034 &none &mo 0x2 &to 0x0 &to 0x0 &to 0x0 &trans &trans &trans &trans &to 0x0 &to 0x0 &to 0x0 &NPRG_SP &trans &trans &trans &trans &trans &to 0x0 &trans &trans &trans &trans &NPRG_SP >;
 		};
 		programming_layer_shift {
-			bindings = < &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans &trans &none &SPRG_H02 &none &SPRG_H04 &SPRG_H05 &none &none &none &none &SPRG_H08 &SPRG_H09 &SPRG_H10 &trans &trans &SPRG_M01 &SPRG_M02 &SPRG_M03 &none &SPRG_M05 &none &none &none &SPRG_M07 &none &none &SPRG_M10 &trans &trans &none &none &none &none &SPRG_L05 &none &none &SPRG_L08 &SPRG_L09 &none &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans >;
+			bindings = < &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans &SPRG_H00 &none &SPRG_H02 &none &SPRG_H04 &SPRG_H05 &none &none &none &none &SPRG_H08 &SPRG_H09 &SPRG_H10 &SPRG_H11 &trans &SPRG_M01 &SPRG_M02 &SPRG_M03 &none &SPRG_M05 &none &none &none &SPRG_M07 &none &none &SPRG_M10 &trans &trans &none &none &none &none &SPRG_L05 &none &none &SPRG_L08 &SPRG_L09 &none &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans >;
 		};
 		programming_layer_ctrl {
-			bindings = < &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans &trans &none &none &none &CPRG_H04 &CPRG_H05 &none &none &none &none &none &none &none &trans &trans &none &none &CPRG_M03 &none &none &none &none &none &CPRG_M07 &none &none &CPRG_M10 &trans &trans &none &none &none &none &none &none &none &none &none &none &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans >;
+			bindings = < &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans &CPRG_H00 &none &none &none &CPRG_H04 &CPRG_H05 &none &none &none &none &none &none &none &trans &trans &none &none &CPRG_M03 &none &none &none &none &none &CPRG_M07 &none &none &CPRG_M10 &trans &trans &none &none &none &none &none &none &none &none &none &none &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans >;
 		};
 		lower {
-			bindings = < &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans &none &kp 0x70050 &kp 0x70051 &kp 0x70052 &kp 0x7004f &kp 0x7001d &none &none &kp 0x7000d &kp 0x7004a &kp 0x7004e &kp 0x7004b &kp 0x7004d &kp 0x7004c &none &kp 0x7004a &kp 0x7004b &kp 0x7004e &kp 0x7004d &none &none &none &kp 0x7001d &kp 0x70050 &kp 0x70051 &kp 0x70052 &kp 0x7004f &none &kp 0x700e1 &kp 0x8070050 &kp 0x8070052 &kp 0x8070051 &kp 0x807004f &none &kp 0x70013 &kp 0x4070050 &kp 0x4070051 &kp 0x4070052 &kp 0x407004f &kp 0x700e5 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans >;
+			bindings = < &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans &none &kp 0x70050 &kp 0x70051 &kp 0x70052 &kp 0x7004f &kp 0x7001d &none &none &kp 0x7000d &kp 0x7004a &kp 0x7004e &kp 0x7004b &kp 0x7004d &kp 0x7004c &none &kp 0x7004a &kp 0x7004b &kp 0x7004e &kp 0x7004d &none &none &none &kp 0x7001d &kp 0x70050 &kp 0x70051 &kp 0x70052 &kp 0x7004f &none &kp 0x700e1 &kp 0x8070050 &kp 0x8070052 &kp 0x8070051 &kp 0x807004f &none &kp 0x70013 &kp 0x4070050 &kp 0x4070051 &kp 0x4070052 &kp 0x407004f &kp 0x700e5 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &kp 0x407002a >;
 		};
 		mod {
 			bindings = < &none &bt 0x3 0x0 &bt 0x3 0x1 &bt 0x3 0x2 &bt 0x3 0x3 &bt 0x3 0x4 &trans &trans &none &none &none &none &none &none &none &none &none &none &none &none &bootloader &bootloader &none &none &none &none &none &none &none &none &none &none &none &none &none &rgb_ug 0xe 0x5 &none &none &none &none &none &none &none &none &none &none &none &none &none &none &none &none &none &none &none &none &none &none &none &bl 0x3 0x0 &bl 0x4 0x0 &none &none &none &none &none &bt 0x0 0x0 &none &none &none &none &none &none &none &bl 0x2 0x0 &rgb_ug 0x0 0x0 >;
