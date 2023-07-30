@@ -99,23 +99,23 @@
 #define ____________________PROG___SR2___________________  &none     &SPRG_M07 &none     &none     &SPRG_M10
 #define ____________________PROG___SR3___________________  &none     &none     &SPRG_L08 &SPRG_L09 &none
 
-    ZMK_MACRO(SPRG_H02, bindings = <&kp AMPS  &kp AMPS>;)
-    ZMK_MACRO(SPRG_H04, bindings = <&kp PLUS  &kp EQUAL>;)
-    ZMK_MACRO(SPRG_H05, bindings = <&kp AT    &kp Q>;)
-    ZMK_MACRO(SPRG_H08, bindings = <&kp LBKT  &kp RBKT>;)
-    ZMK_MACRO(SPRG_H09, bindings = <&kp MINUS &kp GT>;)
-    ZMK_MACRO(SPRG_H10, bindings = <&kp EXCL  &kp EQUAL>;)
+    ZMK_MACRO(SPRG_H02, bindings = <&kp AMPS  &kp AMPS    STCH_EX>;)
+    ZMK_MACRO(SPRG_H04, bindings = <&kp PLUS  &kp EQUAL   STCH_EX>;)
+    ZMK_MACRO(SPRG_H05, bindings = <&kp AT    &kp Q       STCH_EX>;)
+    ZMK_MACRO(SPRG_H08, bindings = <&kp LBKT  &kp RBKT    STCH_EX>;)
+    ZMK_MACRO(SPRG_H09, bindings = <&kp MINUS &kp GT      STCH_EX>;)
+    ZMK_MACRO(SPRG_H10, bindings = <&kp EXCL  &kp EQUAL   STCH_EX>;)
 
-    ZMK_MACRO(SPRG_M01, bindings = <&kp FSLH  &kp EQUAL>;)
-    ZMK_MACRO(SPRG_M02, bindings = <&kp LPAR  &kp RPAR>;)
-    ZMK_MACRO(SPRG_M03, bindings = <&kp EQUAL &kp EQUAL>;)
-    ZMK_MACRO(SPRG_M05, bindings = <&kp LBRC  &kp RBRC>;)
-    ZMK_MACRO(SPRG_M07, bindings = <&kp COLON &kp COLON>;)
-    ZMK_MACRO(SPRG_M10, bindings = <&kp MINUS &kp EQUAL>;)
+    ZMK_MACRO(SPRG_M01, bindings = <&kp FSLH  &kp EQUAL   STCH_EX>;)
+    ZMK_MACRO(SPRG_M02, bindings = <&kp LPAR  &kp RPAR    STCH_EX>;)
+    ZMK_MACRO(SPRG_M03, bindings = <&kp EQUAL &kp EQUAL   STCH_EX>;)
+    ZMK_MACRO(SPRG_M05, bindings = <&kp LBRC  &kp RBRC    STCH_EX>;)
+    ZMK_MACRO(SPRG_M07, bindings = <&kp COLON &kp COLON   STCH_EX>;)
+    ZMK_MACRO(SPRG_M10, bindings = <&kp MINUS &kp EQUAL   STCH_EX>;)
 
-    ZMK_MACRO(SPRG_L05, bindings = <&kp PIPE  &kp PIPE>;)
-    ZMK_MACRO(SPRG_L08, bindings = <&kp LT    &kp EQUAL>;)
-    ZMK_MACRO(SPRG_L09, bindings = <&kp GT    &kp EQUAL>;)
+    ZMK_MACRO(SPRG_L05, bindings = <&kp PIPE  &kp PIPE    STCH_EX>;)
+    ZMK_MACRO(SPRG_L08, bindings = <&kp LT    &kp EQUAL   STCH_EX>;)
+    ZMK_MACRO(SPRG_L09, bindings = <&kp GT    &kp EQUAL   STCH_EX>;)
 
 //    1    2     3     4     5      6    7     8     9     10
 // H     │     │     │ ++  │ @@        │     │     │     │
@@ -130,12 +130,12 @@
 #define ____________________PROG___CR2___________________  &none     &CPRG_M07 &none     &none     &CPRG_M10
 #define ____________________PROG___CR3___________________  &none     &none     &none     &none     &none
 
-    ZMK_MACRO(CPRG_H04, bindings = <&kp PLUS  &kp PLUS>;)
-    ZMK_MACRO(CPRG_H05, bindings = <&kp AT    &kp AT>;)
+    ZMK_MACRO(CPRG_H04, bindings = <&kp PLUS  &kp PLUS    STCH_EX>;)
+    ZMK_MACRO(CPRG_H05, bindings = <&kp AT    &kp AT      STCH_EX>;)
 
-    ZMK_MACRO(CPRG_M03, bindings = <&kp EQUAL &kp GT>;)
-    ZMK_MACRO(CPRG_M07, bindings = <&kp COLON &kp EQUAL>;)
-    ZMK_MACRO(CPRG_M10, bindings = <&kp MINUS &kp MINUS>;)
+    ZMK_MACRO(CPRG_M03, bindings = <&kp EQUAL &kp GT      STCH_EX>;)
+    ZMK_MACRO(CPRG_M07, bindings = <&kp COLON &kp EQUAL   STCH_EX>;)
+    ZMK_MACRO(CPRG_M10, bindings = <&kp MINUS &kp MINUS   STCH_EX>;)
 
     hm: homerow_mods {
       compatible = "zmk,behavior-hold-tap";
