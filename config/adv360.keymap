@@ -16,6 +16,7 @@
 // sticky-layer
 &sl { release-after-ms = <999999>; };
 #define NPRG_CM &sl PROGRAMMING_LAYER
+#define STCH_EX &to NORMAN_LAYER
 
 #define ____________________NUMBERS__L___________________  &kp N1    &kp N2    &kp N3    &kp N4    &kp N5
 #define ____________________NUMBERS__R___________________  &kp N6    &kp N7    &kp N8    &kp N9    &kp N0
@@ -44,11 +45,24 @@
 #define ____________________PROG____R2___________________  &kp RBRC  &kp COLON &kp STAR  &kp RPAR  &kp MINUS
 #define ____________________PROG____R3___________________  &kp BSLH  &kp COMMA &kp HASH  &kp SQT   &none
 
+//    │     │     │     │           │     │     │     │
+//────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
+//    │     │     │     │           │     │     │     │
+//────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
+//    │     │     │     │           │     │     │     │
+#define ____________________PROG___SL1___________________  &kp PRCNT &kp AMPS  &kp QMARK &kp PLUS  &kp AT
+#define ____________________PROG___SL2___________________  &kp FSLH  &kp LPAR  &kp EQUAL &kp SEMI  &kp LBRC
+#define ____________________PROG___SL3___________________  &kp TILDE &kp GRAVE &kp CARET &kp DQT   &kp PIPE
+#define ____________________PROG___SR1___________________  &kp DLLR  &kp UNDER &kp LBKT  &kp RBKT  &kp EXCL
+#define ____________________PROG___SR2___________________  &kp RBRC  &kp COLON &kp STAR  &kp RPAR  &kp MINUS
+#define ____________________PROG___SR3___________________  &kp BSLH  &kp COMMA &kp HASH  &kp SQT   &none
+
 // https://github.com/rastasheep/zmk-config/commit/b8607d4beb15a29671cf7921a1fe5060a7740c6b
 #define HYP LS(LC(LA(LGUI)))
 #define HYPER(key) LS(LC(LA(LG(key))))
 
 // GUI_L,   HYPER_L, KC_LALT, KC_LGUI,                   KC_RGUI, KC_RALT, HYPER_R, GUI_R,
+// FIXME: use layer-tap &lt for this:
 #define GUI_L &kp LBKT
 // #define GUI_L &mt &mo GUI_LAYER LBKT
 #define GUI_R &kp RBKT
@@ -114,11 +128,11 @@
         &kp TAB   ____________________PROG____L1___________________ &none       &none     ____________________PROG____R1___________________ &kp BSLH
         &kp ESC   ____________________PROG____L2___________________ &none       &none     ____________________PROG____R2___________________ &kp SQT
         &kp LSHFT ____________________PROG____L3___________________                       ____________________PROG____R3___________________ &kp RSHFT
-        &trans    &trans    &trans    &trans    &trans                                              &trans    &trans    &trans   &trans     &trans
+        &trans    STCH_EX   STCH_EX   &trans    &trans                                              &trans    &trans    STCH_EX  STCH_EX    &trans
 
                   &trans    &trans    &trans    &trans
                             &trans    &trans
-        &trans    &trans    &trans    &trans    &trans   &trans
+        STCH_EX   &trans    &trans    &trans    &trans   &trans
       >;
     };
     // 2
