@@ -183,7 +183,7 @@
         &kp LSHFT ____________________NORMAN__L3___________________                       ____________________NORMAN__R3___________________ &kp RSHFT
         NPRG_CM   GUI_L     HYPER_L   &kp LALT  &kp LGUI                                            &kp RGUI  &kp RALT  HYPER_R   GUI_R     NPRG_CM
 
-                  &kp SPACE &none     &none     &kp ESC
+                  &kp SPACE &kp CAPS  &kp CAPS  &kp ESC
                             &none     &none
         MO_LOWER  &kp BSPC  &none     TOG_LOWER &kp ENTER &kp SPACE
       >;
