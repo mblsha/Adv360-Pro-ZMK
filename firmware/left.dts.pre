@@ -1336,7 +1336,7 @@
 # 6 "/app/config/adv360.keymap" 2
 # 17 "/app/config/adv360.keymap"
 &sl { release-after-ms = <999999>; };
-# 65 "/app/config/adv360.keymap"
+# 78 "/app/config/adv360.keymap"
 / {
     behaviors {
 # 1 "/app/config/macros.dtsi" 1
@@ -1376,7 +1376,7 @@
     #binding-cells = <0>;
     bindings = <&kp (0x02 << 24 | ((((0x07) << 16) | (0x0E))))>, <&kp ((((0x07) << 16) | (0x0C)))>, <&kp ((((0x07) << 16) | (0x11)))>, <&kp ((((0x07) << 16) | (0x08)))>, <&kp ((((0x07) << 16) | (0x16)))>, <&kp ((((0x07) << 16) | (0x0C)))>, <&kp ((((0x07) << 16) | (0x16)))>;
   };
-# 68 "/app/config/adv360.keymap" 2
+# 81 "/app/config/adv360.keymap" 2
 
       hm: homerow_mods {
           compatible = "zmk,behavior-hold-tap";
@@ -1392,6 +1392,7 @@
   keymap {
     compatible = "zmk,keymap";
 
+
     default_layer {
 
       bindings = <
@@ -1406,6 +1407,7 @@
         &sl 1 &kp (((((0x07) << 16) | (0x2A)))) &none &kp (((((0x07) << 16) | (0x4E)))) &kp (((((0x07) << 16) | (0x28)))) &kp ((((0x07) << 16) | (0x2C)))
       >;
     };
+
     programming_layer {
 
       bindings = <
@@ -1420,7 +1422,9 @@
         &trans &trans &trans &trans &trans &trans
       >;
     };
+
     fn {
+
       bindings = <
         &kp ((((0x07) << 16) | (0x3A))) &kp ((((0x07) << 16) | (0x3B))) &kp ((((0x07) << 16) | (0x3C))) &kp ((((0x07) << 16) | (0x3D))) &kp ((((0x07) << 16) | (0x3E))) &kp ((((0x07) << 16) | (0x3F))) &trans &trans &kp ((((0x07) << 16) | (0x40))) &kp ((((0x07) << 16) | (0x41))) &kp ((((0x07) << 16) | (0x42))) &kp ((((0x07) << 16) | (0x43))) &kp ((((0x07) << 16) | (0x44))) &kp ((((0x07) << 16) | (0x45)))
         &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans
@@ -1428,12 +1432,14 @@
         &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
         &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 
-               &trans &trans &trans &trans
-                      &trans &trans
+                  &trans &trans &trans &trans
+                            &trans &trans
         &trans &trans &trans &trans &trans &trans
       >;
     };
+
     mod {
+
       bindings = <
         &none &bt 3 0 &bt 3 1 &bt 3 2 &bt 3 3 &bt 3 4 &trans &trans &none &none &none &none &none &none
         &none &none &none &none &none &none &bootloader &bootloader &none &none &none &none &none &none
@@ -1441,8 +1447,8 @@
         &none &none &none &none &none &none &none &none &none &none &none &none
         &none &none &none &none &none &bl 3 0 &bl 4 0 &none &none &none
 
-              &none &none &bt 0 0 &none
-                    &none &none
+                  &none &none &bt 0 0 &none
+                            &none &none
         &none &none &none &none &bl 2 0 &rgb_ug 0 0
       >;
     };

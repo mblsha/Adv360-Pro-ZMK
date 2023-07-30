@@ -17,9 +17,6 @@
 &sl { release-after-ms = <999999>; };
 #define NPRG_CM &sl PROGRAMMING_LAYER
 
-//_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
-//_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
-      //_________ _________ _________ _________ _________
 #define ____________________NUMBERS__L___________________  &kp N1    &kp N2    &kp N3    &kp N4    &kp N5
 #define ____________________NUMBERS__R___________________  &kp N6    &kp N7    &kp N8    &kp N9    &kp N0
 #define ____________________QWERTY__L1___________________  &kp Q     &kp W     &kp E     &kp R     &kp T
@@ -62,6 +59,20 @@
 #define CTL_ESC &mt LCTRL ESC
 #define CTL_ENT &mt RCTRL ENTER
 
+#define RGB_UG_MF &rgb_ug RGB_MEFS_CMD 5
+#define BOOTLOADR &bootloader
+#define BT_SEL_0  &bt BT_SEL 0
+#define BT_SEL_1  &bt BT_SEL 1
+#define BT_SEL_2  &bt BT_SEL 2
+#define BT_SEL_3  &bt BT_SEL 3
+#define BT_SEL_4  &bt BT_SEL 4
+#define BT_CLR___ &bt BT_CLR
+
+#define BL_INC___ &bl BL_INC
+#define BL_DEC___ &bl BL_DEC
+#define BL_TOG___ &bl BL_TOG
+#define RGB_TOG__ &rgb_ug RGB_TOG
+
 / {
     behaviors {
       #include "macros.dtsi"
@@ -80,6 +91,7 @@
   keymap {
     compatible = "zmk,keymap";
 
+    // 0
     default_layer {
       //_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
       bindings = <
@@ -94,6 +106,7 @@
         NPRG_CM   &kp BSPC  &none     &kp PG_DN &kp ENTER &kp SPACE
       >;
     };
+    // 1
     programming_layer {
       //_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
       bindings = <
@@ -108,30 +121,34 @@
         &trans    &trans    &trans    &trans    &trans   &trans
       >;
     };
+    // 2
     fn {
+      //_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
       bindings = <
-        &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6  &trans  &trans &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
-        &trans &trans &trans &trans &trans &trans  &none   &none  &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans &trans  &none   &none  &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans &trans                 &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans                               &trans &trans &trans  &trans  &trans
+        &kp F1    &kp F2    &kp F3    &kp F4    &kp F5    &kp F6    &trans      &trans    &kp F7    &kp F8    &kp F9    &kp F10   &kp F11   &kp F12
+        &trans    &trans    &trans    &trans    &trans    &trans    &none       &none     &trans    &trans    &trans    &trans    &trans    &trans
+        &trans    &trans    &trans    &trans    &trans    &trans    &none       &none     &trans    &trans    &trans    &trans    &trans    &trans
+        &trans    &trans    &trans    &trans    &trans    &trans                          &trans    &trans    &trans    &trans    &trans    &trans
+        &trans    &trans    &trans    &trans    &trans                                              &trans    &trans    &trans    &trans    &trans
 
-               &trans &trans &trans &trans
-                      &trans &trans
-        &trans &trans &trans &trans &trans &trans
+                  &trans    &trans    &trans    &trans
+                            &trans    &trans
+        &trans    &trans    &trans    &trans    &trans    &trans
       >;
     };
+    // 3
     mod {
+      //_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
       bindings = <
-        &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans             &trans                 &none        &none        &none        &none &none &none
-        &none &none        &none        &none        &none        &none        &bootloader        &bootloader            &none        &none        &none        &none &none &none
-        &none &none        &none        &none        &none        &none        &none              &rgb_ug RGB_MEFS_CMD 5 &none        &none        &none        &none &none &none
-        &none &none        &none        &none        &none        &none                                                  &none        &none        &none        &none &none &none
-        &none &none        &none        &none        &none                                                                            &bl BL_INC   &bl BL_DEC   &none &none &none
+        &none     BT_SEL_0  BT_SEL_1  BT_SEL_2  BT_SEL_3  BT_SEL_4  &trans      &trans    &none     &none     &none     &none     &none     &none
+        &none     &none     &none     &none     &none     &none     BOOTLOADR   BOOTLOADR &none     &none     &none     &none     &none     &none
+        &none     &none     &none     &none     &none     &none     &none       RGB_UG_MF &none     &none     &none     &none     &none     &none
+        &none     &none     &none     &none     &none     &none                           &none     &none     &none     &none     &none     &none
+        &none     &none     &none     &none     &none                                               BL_INC___ BL_DEC___ &none     &none     &none
 
-              &none &none &bt BT_CLR &none
-                    &none &none
-        &none &none &none &none      &bl BL_TOG &rgb_ug RGB_TOG
+                  &none     &none     BT_CLR___ &none
+                            &none     &none
+        &none     &none     &none     &none     BL_TOG___ RGB_TOG__
       >;
     };
   };
