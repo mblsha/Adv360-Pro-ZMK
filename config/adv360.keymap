@@ -63,7 +63,8 @@
 #define CTL_ESC &mt LCTRL ESC
 #define CTL_ENT &mt RCTRL ENTER
 
-#define RGB_UG_MF &rgb_ug RGB_MEFS_CMD 5
+// RGB LEDs: on top of the thumb clusters
+#define RGBLED_TG &rgb_ug RGB_MEFS_CMD 5
 #define BOOTLOADR &bootloader
 #define BT_SEL_0  &bt BT_SEL 0
 #define BT_SEL_1  &bt BT_SEL 1
@@ -243,7 +244,7 @@
       bindings = <
         &none     BT_SEL_0  BT_SEL_1  BT_SEL_2  BT_SEL_3  BT_SEL_4  &trans      &trans    &none     &none     &none     &none     &none     &none
         &none     &none     &none     &none     &none     &none     BOOTLOADR   BOOTLOADR &none     &none     &none     &none     &none     &none
-        &none     &none     &none     &none     &none     &none     &none       RGB_UG_MF &none     &none     &none     &none     &none     &none
+        &none     &none     &none     &none     &none     &none     &none       RGBLED_TG &none     &none     &none     &none     &none     &none
         &none     &none     &none     &none     &none     &none                           &none     &none     &none     &none     &none     &none
         &none     &none     &none     &none     &none                                               BL_INC___ BL_DEC___ &none     &none     &none
 
