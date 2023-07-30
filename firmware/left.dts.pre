@@ -1334,9 +1334,9 @@
 # 5 "/app/config/adv360.keymap" 2
 # 1 "/app/zmk/app/include/dt-bindings/zmk/backlight.h" 1 3 4
 # 6 "/app/config/adv360.keymap" 2
-# 18 "/app/config/adv360.keymap"
+# 19 "/app/config/adv360.keymap"
 &sl { release-after-ms = <999999>; };
-# 95 "/app/config/adv360.keymap"
+# 71 "/app/config/adv360.keymap"
 / {
   behaviors {
 # 1 "/app/config/macros.dtsi" 1
@@ -1376,7 +1376,32 @@
     #binding-cells = <0>;
     bindings = <&kp (0x02 << 24 | ((((0x07) << 16) | (0x0E))))>, <&kp ((((0x07) << 16) | (0x0C)))>, <&kp ((((0x07) << 16) | (0x11)))>, <&kp ((((0x07) << 16) | (0x08)))>, <&kp ((((0x07) << 16) | (0x16)))>, <&kp ((((0x07) << 16) | (0x0C)))>, <&kp ((((0x07) << 16) | (0x16)))>;
   };
-# 98 "/app/config/adv360.keymap" 2
+# 74 "/app/config/adv360.keymap" 2
+# 102 "/app/config/adv360.keymap"
+    SPRG_H02: SPRG_H02 { label = "ZM_SPRG_H02"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24)))))>; };
+    SPRG_H04: SPRG_H04 { label = "ZM_SPRG_H04"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp ((((0x07) << 16) | (0x2E)))>; };
+    SPRG_H05: SPRG_H05 { label = "ZM_SPRG_H05"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &kp ((((0x07) << 16) | (0x14)))>; };
+    SPRG_H08: SPRG_H08 { label = "ZM_SPRG_H08"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((((0x07) << 16) | (0x2F)))) &kp (((((0x07) << 16) | (0x30))))>; };
+    SPRG_H09: SPRG_H09 { label = "ZM_SPRG_H09"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2D))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x37)))))>; };
+    SPRG_H10: SPRG_H10 { label = "ZM_SPRG_H10"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x1E))))) &kp ((((0x07) << 16) | (0x2E)))>; };
+
+    SPRG_M01: SPRG_M01 { label = "ZM_SPRG_M01"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((((0x07) << 16) | (0x38)))) &kp ((((0x07) << 16) | (0x2E)))>; };
+    SPRG_M02: SPRG_M02 { label = "ZM_SPRG_M02"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x26))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x27)))))>; };
+    SPRG_M03: SPRG_M03 { label = "ZM_SPRG_M03"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2E))) &kp ((((0x07) << 16) | (0x2E)))>; };
+    SPRG_M05: SPRG_M05 { label = "ZM_SPRG_M05"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x2F))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x30)))))>; };
+    SPRG_M07: SPRG_M07 { label = "ZM_SPRG_M07"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x33))))>; };
+    SPRG_M10: SPRG_M10 { label = "ZM_SPRG_M10"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2D))) &kp ((((0x07) << 16) | (0x2E)))>; };
+
+    SPRG_L05: SPRG_L05 { label = "ZM_SPRG_L05"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x31))))>; };
+    SPRG_L08: SPRG_L08 { label = "ZM_SPRG_L08"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x36))))) &kp ((((0x07) << 16) | (0x2E)))>; };
+    SPRG_L09: SPRG_L09 { label = "ZM_SPRG_L09"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x37))))) &kp ((((0x07) << 16) | (0x2E)))>; };
+# 133 "/app/config/adv360.keymap"
+    CPRG_H04: CPRG_H04 { label = "ZM_CPRG_H04"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x2E))))>; };
+    CPRG_H05: CPRG_H05 { label = "ZM_CPRG_H05"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1F)))))>; };
+
+    CPRG_M03: CPRG_M03 { label = "ZM_CPRG_M03"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2E))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x37)))))>; };
+    CPRG_M07: CPRG_M07 { label = "ZM_CPRG_M07"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &kp ((((0x07) << 16) | (0x2E)))>; };
+    CPRG_M10: CPRG_M10 { label = "ZM_CPRG_M10"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2D))) &kp ((((0x07) << 16) | (0x2D)))>; };
 
     hm: homerow_mods {
       compatible = "zmk,behavior-hold-tap";
@@ -1396,7 +1421,7 @@
     default_layer {
 
       bindings = <
-        &kp ((((0x07) << 16) | (0x2E))) &kp (((((0x07) << 16) | (0x1E)))) &kp (((((0x07) << 16) | (0x1F)))) &kp (((((0x07) << 16) | (0x20)))) &kp (((((0x07) << 16) | (0x21)))) &kp (((((0x07) << 16) | (0x22)))) &mo 4 &mo 4 &kp (((((0x07) << 16) | (0x23)))) &kp (((((0x07) << 16) | (0x24)))) &kp (((((0x07) << 16) | (0x25)))) &kp (((((0x07) << 16) | (0x26)))) &kp (((((0x07) << 16) | (0x27)))) &kp ((((0x07) << 16) | (0x2D)))
+        &kp ((((0x07) << 16) | (0x2E))) &kp (((((0x07) << 16) | (0x1E)))) &kp (((((0x07) << 16) | (0x1F)))) &kp (((((0x07) << 16) | (0x20)))) &kp (((((0x07) << 16) | (0x21)))) &kp (((((0x07) << 16) | (0x22)))) &mo 5 &mo 5 &kp (((((0x07) << 16) | (0x23)))) &kp (((((0x07) << 16) | (0x24)))) &kp (((((0x07) << 16) | (0x25)))) &kp (((((0x07) << 16) | (0x26)))) &kp (((((0x07) << 16) | (0x27)))) &kp ((((0x07) << 16) | (0x2D)))
         &kp ((((0x07) << 16) | (0x2B))) &kp ((((0x07) << 16) | (0x14))) &kp ((((0x07) << 16) | (0x1A))) &kp ((((0x07) << 16) | (0x07))) &kp ((((0x07) << 16) | (0x09))) &kp ((((0x07) << 16) | (0x0E))) &none &none &kp ((((0x07) << 16) | (0x0D))) &kp ((((0x07) << 16) | (0x18))) &kp ((((0x07) << 16) | (0x15))) &kp ((((0x07) << 16) | (0x0F))) &kp (((((0x07) << 16) | (0x29)))) &kp (((((0x07) << 16) | (0x31))))
         &mt (((((0x07) << 16) | (0xE0)))) (((((0x07) << 16) | (0x29)))) &kp ((((0x07) << 16) | (0x04))) &kp ((((0x07) << 16) | (0x16))) &kp ((((0x07) << 16) | (0x08))) &kp ((((0x07) << 16) | (0x17))) &kp ((((0x07) << 16) | (0x0A))) &none &none &kp ((((0x07) << 16) | (0x1C))) &kp ((((0x07) << 16) | (0x11))) &kp ((((0x07) << 16) | (0x0C))) &kp ((((0x07) << 16) | (0x12))) &kp ((((0x07) << 16) | (0x0B))) &mt (((((0x07) << 16) | (0xE4)))) (((((0x07) << 16) | (0x28))))
         &kp (((((0x07) << 16) | (0xE1)))) &kp ((((0x07) << 16) | (0x1D))) &kp ((((0x07) << 16) | (0x1B))) &kp ((((0x07) << 16) | (0x06))) &kp ((((0x07) << 16) | (0x19))) &kp ((((0x07) << 16) | (0x05))) &kp ((((0x07) << 16) | (0x13))) &kp ((((0x07) << 16) | (0x10))) &sl 1 &kp (((((0x07) << 16) | (0x37)))) &kp (((((0x07) << 16) | (0x38)))) &kp (((((0x07) << 16) | (0xE5))))
@@ -1413,7 +1438,7 @@
       bindings = <
         &none &none &none &none &none &none &trans &trans &none &none &none &none &none &none
         &none &kp (((0x02 << 24 | (((0x07) << 16) | (0x22))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x38))))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &none &none &kp (((0x02 << 24 | (((0x07) << 16) | (0x21))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2D))))) &kp (((((0x07) << 16) | (0x2F)))) &kp (((((0x07) << 16) | (0x30)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1E))))) &none
-        &kp (((((0x07) << 16) | (0xE0)))) &kp (((((0x07) << 16) | (0x38)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x26))))) &kp ((((0x07) << 16) | (0x2E))) &kp (((((0x07) << 16) | (0x33)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2F))))) &none &none &kp (((0x02 << 24 | (((0x07) << 16) | (0x30))))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x25))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x27))))) &kp ((((0x07) << 16) | (0x2D))) &kp (((((0x07) << 16) | (0xE4))))
+        &mo 3 &kp (((((0x07) << 16) | (0x38)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x26))))) &kp ((((0x07) << 16) | (0x2E))) &kp (((((0x07) << 16) | (0x33)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2F))))) &none &none &kp (((0x02 << 24 | (((0x07) << 16) | (0x30))))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x25))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x27))))) &kp ((((0x07) << 16) | (0x2D))) &mo 3
         &mo 2 &kp ((0x02 << 24 | (((0x07) << 16) | (0x35)))) &kp ((((0x07) << 16) | (0x35))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x23)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x34))))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &kp (((((0x07) << 16) | (0x31)))) &kp ((((0x07) << 16) | (0x36))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x20)))) &kp (((((0x07) << 16) | (0x34)))) &none &mo 2
         &trans &to 0 &to 0 &trans &trans &trans &trans &to 0 &to 0 &trans
 
@@ -1427,10 +1452,24 @@
 
       bindings = <
         &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans
-        &trans &none &none &none &none &none &none &none &none &none &none &none &none &trans
-        &trans &none &none &none &none &none &none &none &none &none &none &none &none &trans
-        &trans &none &none &none &none &none &none &none &none &none &none &trans
+        &trans &none &SPRG_H02 &none &SPRG_H04 &SPRG_H05 &none &none &none &none &SPRG_H08 &SPRG_H09 &SPRG_H10 &trans
+        &trans &SPRG_M01 &SPRG_M02 &SPRG_M03 &none &SPRG_M05 &none &none &none &SPRG_M07 &none &none &SPRG_M10 &trans
+        &trans &none &none &none &none &SPRG_L05 &none &none &SPRG_L08 &SPRG_L09 &none &trans
+        &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 
+                  &trans &trans &trans &trans
+                            &trans &trans
+        &trans &trans &trans &trans &trans &trans
+      >;
+    };
+
+    programming_layer_ctrl {
+
+      bindings = <
+        &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans
+        &trans &none &none &none &CPRG_H04 &CPRG_H05 &none &none &none &none &none &none &none &trans
+        &trans &none &none &CPRG_M03 &none &none &none &none &none &CPRG_M07 &none &none &CPRG_M10 &trans
+        &trans &none &none &none &none &none &none &none &none &none &none &trans
         &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 
                   &trans &trans &trans &trans
