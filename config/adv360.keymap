@@ -40,14 +40,12 @@
 #define ____________________NORMAN__R2___________________  &kp Y     &kp N     &kp I     &kp O     &kp H
 #define ____________________NORMAN__R3___________________  &kp P     &kp M     NPRG_CM   &kp DOT   &kp FSLH
 
-#define ______________________________LOWER___L1___________________  &none     &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT    &kp Z
-#define ____________________LOWER___R1__________________________     &kp J     &kp HOME     &kp PGDN     &kp PGUP     &kp END      &kp DEL
-#define ______________________________LOWER___L2___________________  &none     &kp HOME     &kp PGUP     &kp PGDN     &kp END      &none
-#define ____________________LOWER___R2__________________________     &kp Z     &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT    &none
-#define ______________________________LOWER___L3___________________  &kp LSHFT &none        &none        &none        &none        &none
-#define ____________________LOWER___R3__________________________     &none     &none        &none        &none        &none        &kp RSHFT
-// #define ______________________________LOWER___L3___________________  &kp LSHFT &kp LG(LEFT) &kp LG(UP)   &kp LG(DOWN) &kp LG(RGHT) &none
-// #define ____________________LOWER___R3__________________________     &kp P     &kp LA(LEFT) &kp LA(DOWN) &kp LA(UP)   &kp LA(RGHT) &kp RSHFT
+#define ______________________________LOWER___L1___________________  &none     &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT     &kp Z
+#define ____________________LOWER___R1__________________________     &kp J     &kp HOME     &kp PGDN     &kp PGUP     &kp END       &kp DEL
+#define ______________________________LOWER___L2___________________  &none     &kp HOME     &kp PGUP     &kp PGDN     &kp END       &none
+#define ____________________LOWER___R2__________________________     &kp Z     &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT     &none
+#define ______________________________LOWER___L3___________________  &kp LSHFT &kp LG(LEFT) &kp LG(UP)   &kp LG(DOWN) &kp LG(RIGHT) &none
+#define ____________________LOWER___R3__________________________     &kp P     &kp LA(LEFT) &kp LA(DOWN) &kp LA(UP)   &kp LA(RIGHT) &kp RSHFT
 
 // https://github.com/rastasheep/zmk-config/commit/b8607d4beb15a29671cf7921a1fe5060a7740c6b
 #define HYP LS(LC(LA(LGUI)))
