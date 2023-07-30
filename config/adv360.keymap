@@ -6,8 +6,9 @@
 
 #define NORMAN_LAYER 0
 #define PROGRAMMING_LAYER 1
-#define FN_LAYER 2
-#define MOD_LAYER 3
+#define PROGRAMMING_LAYER_SHIFT 2
+#define FN_LAYER 3
+#define MOD_LAYER 4
 #define GUI_LAYER 1
 
 #define MO_FN  &mo PROGRAMMING_LAYER
@@ -16,6 +17,7 @@
 // sticky-layer
 &sl { release-after-ms = <999999>; };
 #define NPRG_CM &sl PROGRAMMING_LAYER
+#define MO_SPRG &mo PROGRAMMING_LAYER_SHIFT
 #define STCH_EX &to NORMAN_LAYER
 
 #define ____________________NUMBERS__L___________________  &kp N1    &kp N2    &kp N3    &kp N4    &kp N5
@@ -47,17 +49,18 @@
 #define ____________________PROG____R3___________________  &kp BSLH  &kp COMMA &kp HASH  &kp SQT   &none
 
 // use Macro to input several keys
-//    │ &&  │     │ +=  │ @q        │     │ []  │ ->  │ !=
-//────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
-//    │     │     │     │           │ ::  │     │     │ -=
-//────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
-//    │     │     │     │ ||        │     │ <=  │ >=  │
-#define ____________________PROG___SL1___________________  &kp PRCNT &kp AMPS  &kp QMARK &kp PLUS  &kp AT
-#define ____________________PROG___SL2___________________  &kp FSLH  &kp LPAR  &kp EQUAL &kp SEMI  &kp LBRC
-#define ____________________PROG___SL3___________________  &kp TILDE &kp GRAVE &kp CARET &kp DQT   &kp PIPE
-#define ____________________PROG___SR1___________________  &kp DLLR  &kp UNDER &kp LBKT  &kp RBKT  &kp EXCL
-#define ____________________PROG___SR2___________________  &kp RBRC  &kp COLON &kp STAR  &kp RPAR  &kp MINUS
-#define ____________________PROG___SR3___________________  &kp BSLH  &kp COMMA &kp HASH  &kp SQT   &none
+//    1    2     3     4     5      6    7     8     9     10
+// H     │ &&  │     │ +=  │ @q        │     │ []  │ ->  │ !=
+//   ────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
+// M     │     │     │     │           │ ::  │     │     │ -=
+//   ────┼─────┼─────┼─────┼───     ───┼─────┼─────┼─────┼────
+// L     │     │     │     │ ||        │     │ <=  │ >=  │
+#define ____________________PROG___SL1___________________  &none  &none  &none  &none  &none
+#define ____________________PROG___SL2___________________  &none  &none  &none  &none  &none
+#define ____________________PROG___SL3___________________  &none  &none  &none  &none  &none
+#define ____________________PROG___SR1___________________  &none  &none  &none  &none  &none
+#define ____________________PROG___SR2___________________  &none  &none  &none  &none  &none
+#define ____________________PROG___SR3___________________  &none  &none  &none  &none  &none
 
 // https://github.com/rastasheep/zmk-config/commit/b8607d4beb15a29671cf7921a1fe5060a7740c6b
 #define HYP LS(LC(LA(LGUI)))
@@ -90,19 +93,19 @@
 #define RGB_TOG__ &rgb_ug RGB_TOG
 
 / {
-    behaviors {
-      #include "macros.dtsi"
+  behaviors {
+    #include "macros.dtsi"
 
-      hm: homerow_mods {
-          compatible = "zmk,behavior-hold-tap";
-          label = "HOMEROW_MODS";
-          #binding-cells = <2>;
-          tapping-term-ms = <200>;
-          quick_tap_ms = <175>;
-          flavor = "tap-preferred";
-          bindings = <&kp>, <&kp>;
-      };
+    hm: homerow_mods {
+      compatible = "zmk,behavior-hold-tap";
+      label = "HOMEROW_MODS";
+      #binding-cells = <2>;
+      tapping-term-ms = <200>;
+      quick_tap_ms = <175>;
+      flavor = "tap-preferred";
+      bindings = <&kp>, <&kp>;
     };
+  };
 
   keymap {
     compatible = "zmk,keymap";
@@ -129,7 +132,7 @@
         &none     &none     &none     &none     &none     &none     &trans      &trans    &none     &none      &none     &none     &none    &none
         &none     ____________________PROG____L1___________________ &none       &none     ____________________PROG____R1___________________ &none
         &kp LCTRL ____________________PROG____L2___________________ &none       &none     ____________________PROG____R2___________________ &kp RCTRL
-        &kp LSHFT ____________________PROG____L3___________________                       ____________________PROG____R3___________________ &kp RSHFT
+        MO_SPRG   ____________________PROG____L3___________________                       ____________________PROG____R3___________________ MO_SPRG
         &trans    STCH_EX   STCH_EX   &trans    &trans                                              &trans    &trans    STCH_EX  STCH_EX    &trans
 
                   &trans    &trans    &trans    &trans
@@ -138,6 +141,22 @@
       >;
     };
     // 2
+    programming_layer_shift {
+      //_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
+      bindings = <
+        &trans    &trans    &trans    &trans    &trans    &trans    &none       &none     &trans    &trans    &trans    &trans    &trans    &trans
+        &trans    ____________________PROG___SL1___________________ &none       &none     ____________________PROG___SR1___________________ &trans
+        &trans    ____________________PROG___SL2___________________ &none       &none     ____________________PROG___SR2___________________ &trans
+        &trans    ____________________PROG___SL3___________________                       ____________________PROG___SR3___________________ &trans
+
+        &trans    &trans    &trans    &trans    &trans                                              &trans    &trans    &trans    &trans    &trans
+
+                  &trans    &trans    &trans    &trans
+                            &trans    &trans
+        &trans    &trans    &trans    &trans    &trans    &trans
+      >;
+    };
+    // 3
     fn {
       //_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
       bindings = <
@@ -152,7 +171,7 @@
         &trans    &trans    &trans    &trans    &trans    &trans
       >;
     };
-    // 3
+    // 4
     mod {
       //_________ _________ _________ _________ _________ _________ _________   _________ _________ _________ _________ _________ _________ _________
       bindings = <
