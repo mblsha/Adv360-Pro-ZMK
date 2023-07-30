@@ -234,7 +234,7 @@
 
                   &trans    &trans    &trans    &trans
                             &trans    &trans
-        &trans    &trans    &trans    &trans    &trans    &trans
+        &trans    &trans    &trans    &trans    &trans    &kp LA(BSPC)
       >;
     };
     // 5
