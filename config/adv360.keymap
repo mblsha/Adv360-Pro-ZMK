@@ -19,6 +19,8 @@
 
 // sticky-layer
 &sl { release-after-ms = <999999>; };
+
+// FIXME: shift+NPRG_CM should insert <, not activate the layer
 #define NPRG_CM &sl PROGRAMMING_LAYER
 #define MO_SPRG &mo PROGRAMMING_LAYER_SHIFT
 #define MO_CPRG &mo PROGRAMMING_LAYER_CTRL
