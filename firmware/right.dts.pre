@@ -84,7 +84,24 @@
 # 1 "/app/zephyr/include/zephyr/sys/util_internal.h" 1 3 4
 # 18 "/app/zephyr/include/zephyr/sys/util_internal.h" 3 4
 # 1 "/app/zephyr/include/zephyr/sys/util_loops.h" 1 3 4
+# 1083 "/app/zephyr/include/zephyr/sys/util_loops.h" 3 4
+# 1 "/app/zephyr/include/zephyr/sys/util_listify.h" 1 3 4
+# 1084 "/app/zephyr/include/zephyr/sys/util_loops.h" 2 3 4
 # 19 "/app/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 153 "/app/zephyr/include/zephyr/sys/util_internal.h" 3 4
+# 1 "/app/zephyr/include/zephyr/sys/util_internal_is_eq.h" 1 3 4
+# 154 "/app/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 184 "/app/zephyr/include/zephyr/sys/util_internal.h" 3 4
+# 1 "/app/zephyr/include/zephyr/sys/util_internal_util_inc.h" 1 3 4
+# 185 "/app/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+
+
+# 1 "/app/zephyr/include/zephyr/sys/util_internal_util_dec.h" 1 3 4
+# 188 "/app/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+
+
+# 1 "/app/zephyr/include/zephyr/sys/util_internal_util_x2.h" 1 3 4
+# 191 "/app/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
 # 35 "/app/zephyr/include/zephyr/sys/util_macro.h" 2 3 4
 # 20 "/app/zephyr/include/zephyr/dt-bindings/dt-util.h" 2 3 4
 # 11 "/app/zephyr/include/zephyr/dt-bindings/adc/nrf-adc.h" 2 3 4
@@ -115,6 +132,14 @@
  rng_hci: entropy_bt_hci {
   compatible = "zephyr,bt-hci-entropy";
   status = "okay";
+ };
+
+ sw_pwm: sw-pwm {
+  compatible = "nordic,nrf-sw-pwm";
+  status = "disabled";
+  generator = <&timer1>;
+  clock-prescaler = <0>;
+  #pwm-cells = <3>;
  };
 };
 
@@ -181,6 +206,24 @@
    reg = <0x40000000 0x1000>;
    interrupts = <0 1>;
    status = "okay";
+   #address-cells = <1>;
+   #size-cells = <1>;
+
+   gpregret1: gpregret1@4000051c {
+    #address-cells = <1>;
+    #size-cells = <1>;
+    compatible = "nordic,nrf-gpregret";
+    reg = <0x4000051c 0x1>;
+    status = "okay";
+   };
+
+   gpregret2: gpregret2@40000520 {
+    #address-cells = <1>;
+    #size-cells = <1>;
+    compatible = "nordic,nrf-gpregret";
+    reg = <0x40000520 0x1>;
+    status = "okay";
+   };
   };
 
   radio: radio@40001000 {
@@ -222,6 +265,7 @@
    reg = <0x40003000 0x1000>;
    clock-frequency = <100000>;
    interrupts = <3 1>;
+   easydma-maxcnt-bits = <16>;
    status = "disabled";
   };
 
@@ -239,6 +283,7 @@
    reg = <0x40003000 0x1000>;
    interrupts = <3 1>;
    max-frequency = <((8) * 1000 * 1000)>;
+   easydma-maxcnt-bits = <16>;
    status = "disabled";
   };
 
@@ -256,6 +301,7 @@
    reg = <0x40004000 0x1000>;
    clock-frequency = <100000>;
    interrupts = <4 1>;
+   easydma-maxcnt-bits = <16>;
    status = "disabled";
   };
 
@@ -273,6 +319,7 @@
    reg = <0x40004000 0x1000>;
    interrupts = <4 1>;
    max-frequency = <((8) * 1000 * 1000)>;
+   easydma-maxcnt-bits = <16>;
    status = "disabled";
   };
 
@@ -280,7 +327,7 @@
    compatible = "nordic,nrf-nfct";
    reg = <0x40005000 0x1000>;
    interrupts = <5 1>;
-   status = "disabled";
+   status = "okay";
   };
 
   gpiote: gpiote@40006000 {
@@ -300,27 +347,30 @@
 
   timer0: timer@40008000 {
    compatible = "nordic,nrf-timer";
-   status = "okay";
+   status = "disabled";
    reg = <0x40008000 0x1000>;
    cc-num = <4>;
+   max-bit-width = <32>;
    interrupts = <8 1>;
    prescaler = <0>;
   };
 
   timer1: timer@40009000 {
    compatible = "nordic,nrf-timer";
-   status = "okay";
+   status = "disabled";
    reg = <0x40009000 0x1000>;
    cc-num = <4>;
+   max-bit-width = <32>;
    interrupts = <9 1>;
    prescaler = <0>;
   };
 
   timer2: timer@4000a000 {
    compatible = "nordic,nrf-timer";
-   status = "okay";
+   status = "disabled";
    reg = <0x4000a000 0x1000>;
    cc-num = <4>;
+   max-bit-width = <32>;
    interrupts = <10 1>;
    prescaler = <0>;
   };
@@ -330,7 +380,7 @@
    reg = <0x4000b000 0x1000>;
    cc-num = <3>;
    interrupts = <11 1>;
-   status = "okay";
+   status = "disabled";
    clock-frequency = <32768>;
    prescaler = <1>;
   };
@@ -376,7 +426,7 @@
    reg = <0x40011000 0x1000>;
    cc-num = <4>;
    interrupts = <17 1>;
-   status = "okay";
+   status = "disabled";
    clock-frequency = <32768>;
    prescaler = <1>;
   };
@@ -446,18 +496,20 @@
 
   timer3: timer@4001a000 {
    compatible = "nordic,nrf-timer";
-   status = "okay";
+   status = "disabled";
    reg = <0x4001a000 0x1000>;
    cc-num = <6>;
+   max-bit-width = <32>;
    interrupts = <26 1>;
    prescaler = <0>;
   };
 
   timer4: timer@4001b000 {
    compatible = "nordic,nrf-timer";
-   status = "okay";
+   status = "disabled";
    reg = <0x4001b000 0x1000>;
    cc-num = <6>;
+   max-bit-width = <32>;
    interrupts = <27 1>;
    prescaler = <0>;
   };
@@ -541,6 +593,7 @@
    reg = <0x40023000 0x1000>;
    interrupts = <35 1>;
    max-frequency = <((8) * 1000 * 1000)>;
+   easydma-maxcnt-bits = <16>;
    status = "disabled";
   };
 
@@ -549,7 +602,7 @@
    reg = <0x40024000 0x1000>;
    cc-num = <4>;
    interrupts = <36 1>;
-   status = "okay";
+   status = "disabled";
    clock-frequency = <32768>;
    prescaler = <1>;
   };
@@ -607,6 +660,7 @@
    reg = <0x4002f000 0x1000>;
    interrupts = <47 1>;
    max-frequency = <((32) * 1000 * 1000)>;
+   easydma-maxcnt-bits = <16>;
    rx-delay-supported;
    rx-delay = <2>;
    status = "disabled";
@@ -634,25 +688,12 @@
   };
 
   cryptocell: crypto@5002a000 {
-   compatible = "nordic,nrf-cc310";
-   reg = <0x5002A000 0x1000>;
-   status = "okay";
-   #address-cells = <1>;
-   #size-cells = <1>;
-   cryptocell310: crypto@5002b000 {
-    compatible = "arm,cryptocell-310";
-    reg = <0x5002B000 0x1000>;
-    interrupts = <42 1>;
-   };
+   compatible = "nordic,cryptocell", "arm,cryptocell-310";
+   reg = <0x5002a000 0x1000>, <0x5002b000 0x1000>;
+   reg-names = "wrapper", "core";
+   interrupts = <42 1>;
+   status = "disabled";
   };
- };
-
- sw_pwm: sw-pwm {
-  compatible = "nordic,nrf-sw-pwm";
-  status = "disabled";
-  generator = <&timer2>;
-  clock-prescaler = <0>;
-  #pwm-cells = <3>;
  };
 };
 
@@ -671,7 +712,8 @@
 
 / {
  soc {
-  compatible = "nordic,nRF52840-QIAA", "nordic,nRF52840", "nordic,nRF52", "simple-bus";
+  compatible = "nordic,nrf52840-qiaa", "nordic,nrf52840",
+        "nordic,nrf52", "simple-bus";
  };
 };
 # 10 "/app/config/boards/arm/adv360/adv360.dtsi" 2
@@ -681,6 +723,109 @@
 # 1 "/app/zmk/app/include/dt-bindings/zmk/matrix_transform.h" 1 3 4
 # 13 "/app/config/boards/arm/adv360/adv360.dtsi" 2
 
+# 1 "/app/config/boards/arm/adv360/adv360-layouts.dtsi" 1
+# 1 "/app/zmk/app/dts/physical_layouts.dtsi" 1 3 4
+
+
+
+
+
+
+/ {
+    key_physical_attrs: key_physical_attrs {
+        compatible = "zmk,key-physical-attrs";
+
+        #key-cells = <7>;
+    };
+};
+# 2 "/app/config/boards/arm/adv360/adv360-layouts.dtsi" 2
+
+/ {
+    physical_layout0: physical_layout_0 {
+        compatible = "zmk,physical-layout";
+        display-name = "Default";
+
+        keys
+            = <&key_physical_attrs 125 100 0 25 0 0 0>
+            , <&key_physical_attrs 100 100 125 25 0 0 0>
+            , <&key_physical_attrs 100 100 225 0 0 0 0>
+            , <&key_physical_attrs 100 100 325 0 0 0 0>
+            , <&key_physical_attrs 100 100 425 0 0 0 0>
+            , <&key_physical_attrs 100 100 525 0 0 0 0>
+            , <&key_physical_attrs 100 100 625 0 0 0 0>
+            , <&key_physical_attrs 100 100 1075 0 0 0 0>
+            , <&key_physical_attrs 100 100 1175 0 0 0 0>
+            , <&key_physical_attrs 100 100 1275 0 0 0 0>
+            , <&key_physical_attrs 100 100 1375 0 0 0 0>
+            , <&key_physical_attrs 100 100 1475 0 0 0 0>
+            , <&key_physical_attrs 100 100 1575 25 0 0 0>
+            , <&key_physical_attrs 125 100 1675 25 0 0 0>
+            , <&key_physical_attrs 125 100 0 125 0 0 0>
+            , <&key_physical_attrs 100 100 125 125 0 0 0>
+            , <&key_physical_attrs 100 100 225 100 0 0 0>
+            , <&key_physical_attrs 100 100 325 100 0 0 0>
+            , <&key_physical_attrs 100 100 425 100 0 0 0>
+            , <&key_physical_attrs 100 100 525 100 0 0 0>
+            , <&key_physical_attrs 100 100 625 100 0 0 0>
+            , <&key_physical_attrs 100 100 1075 100 0 0 0>
+            , <&key_physical_attrs 100 100 1175 100 0 0 0>
+            , <&key_physical_attrs 100 100 1275 100 0 0 0>
+            , <&key_physical_attrs 100 100 1375 100 0 0 0>
+            , <&key_physical_attrs 100 100 1475 100 0 0 0>
+            , <&key_physical_attrs 100 100 1575 125 0 0 0>
+            , <&key_physical_attrs 125 100 1675 125 0 0 0>
+            , <&key_physical_attrs 125 100 0 225 0 0 0>
+            , <&key_physical_attrs 100 100 125 225 0 0 0>
+            , <&key_physical_attrs 100 100 225 200 0 0 0>
+            , <&key_physical_attrs 100 100 325 200 0 0 0>
+            , <&key_physical_attrs 100 100 425 200 0 0 0>
+            , <&key_physical_attrs 100 100 525 200 0 0 0>
+            , <&key_physical_attrs 100 100 625 200 0 0 0>
+            , <&key_physical_attrs 100 100 675 400 1500 525 400>
+            , <&key_physical_attrs 100 100 775 400 1500 525 400>
+            , <&key_physical_attrs 100 100 925 400 (-1500) 1275 400>
+            , <&key_physical_attrs 100 100 1025 400 (-1500) 1275 400>
+            , <&key_physical_attrs 100 100 1075 200 0 0 0>
+            , <&key_physical_attrs 100 100 1175 200 0 0 0>
+            , <&key_physical_attrs 100 100 1275 200 0 0 0>
+            , <&key_physical_attrs 100 100 1375 200 0 0 0>
+            , <&key_physical_attrs 100 100 1475 200 0 0 0>
+            , <&key_physical_attrs 100 100 1575 225 0 0 0>
+            , <&key_physical_attrs 125 100 1675 225 0 0 0>
+            , <&key_physical_attrs 125 100 0 325 0 0 0>
+            , <&key_physical_attrs 100 100 125 325 0 0 0>
+            , <&key_physical_attrs 100 100 225 300 0 0 0>
+            , <&key_physical_attrs 100 100 325 300 0 0 0>
+            , <&key_physical_attrs 100 100 425 300 0 0 0>
+            , <&key_physical_attrs 100 100 525 300 0 0 0>
+            , <&key_physical_attrs 100 100 775 500 1500 525 400>
+            , <&key_physical_attrs 100 100 925 500 (-1500) 1275 400>
+            , <&key_physical_attrs 100 100 1175 300 0 0 0>
+            , <&key_physical_attrs 100 100 1275 300 0 0 0>
+            , <&key_physical_attrs 100 100 1375 300 0 0 0>
+            , <&key_physical_attrs 100 100 1475 300 0 0 0>
+            , <&key_physical_attrs 100 100 1575 325 0 0 0>
+            , <&key_physical_attrs 125 100 1675 325 0 0 0>
+            , <&key_physical_attrs 125 100 0 425 0 0 0>
+            , <&key_physical_attrs 100 100 125 425 0 0 0>
+            , <&key_physical_attrs 100 100 225 400 0 0 0>
+            , <&key_physical_attrs 100 100 325 400 0 0 0>
+            , <&key_physical_attrs 100 100 425 400 0 0 0>
+            , <&key_physical_attrs 100 200 575 500 1500 525 400>
+            , <&key_physical_attrs 100 200 675 500 1500 525 400>
+            , <&key_physical_attrs 100 100 775 600 1500 525 400>
+            , <&key_physical_attrs 100 100 925 600 (-1500) 1275 400>
+            , <&key_physical_attrs 100 200 1025 500 (-1500) 1275 400>
+            , <&key_physical_attrs 100 200 1125 500 (-1500) 1275 400>
+            , <&key_physical_attrs 100 100 1275 400 0 0 0>
+            , <&key_physical_attrs 100 100 1375 400 0 0 0>
+            , <&key_physical_attrs 100 100 1475 400 0 0 0>
+            , <&key_physical_attrs 100 100 1575 425 0 0 0>
+            , <&key_physical_attrs 125 100 1675 425 0 0 0>
+            ;
+    };
+};
+# 15 "/app/config/boards/arm/adv360/adv360.dtsi" 2
 # 1 "/app/config/boards/arm/adv360/adv360_pinctrl.dtsi" 1
 
 
@@ -712,7 +857,11 @@
         };
     };
 };
-# 15 "/app/config/boards/arm/adv360/adv360.dtsi" 2
+# 16 "/app/config/boards/arm/adv360/adv360.dtsi" 2
+
+&physical_layout0 {
+    transform = <&matrix_transform0>;
+};
 
 / {
     model = "Adv360";
@@ -725,11 +874,11 @@
         zmk,kscan = &kscan0;
         zmk,backlight = &backlight;
         zmk,battery = &vbatt;
-        zmk,matrix_transform = &default_transform;
+        zmk,physical-layout = &physical_layout0;
         zmk,underglow = &led_strip;
     };
 
-    default_transform: keymap_transform_0 {
+    matrix_transform0: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <20>;
         rows = <5>;
@@ -747,9 +896,8 @@
             (((0) << 8) + (7)) (((0) << 8) + (8)) (((0) << 8) + (9)) (((0) << 8) + (10)) (((0) << 8) + (11)) (((0) << 8) + (12))
         >;
     };
-    ext-power {
+    EXT_POWER {
             compatible = "zmk,ext-power-generic";
-            label = "EXT_POWER";
             control-gpios = <&gpio0 13 (0 << 0)>;
         };
 
@@ -792,7 +940,7 @@
     status = "okay";
 };
 
-&usbd {
+zephyr_udc0: &usbd {
     status = "okay";
 };
 
@@ -808,21 +956,17 @@
         #size-cells = <1>;
 
         sd_partition: partition@0 {
-            label = "softdevice";
             reg = <0x00000000 0x00026000>;
         };
         code_partition: partition@26000 {
-            label = "code_partition";
             reg = <0x00026000 0x000c6000>;
         };
-# 127 "/app/config/boards/arm/adv360/adv360.dtsi"
+# 129 "/app/config/boards/arm/adv360/adv360.dtsi"
         storage_partition: partition@ec000 {
-            label = "storage";
             reg = <0x000ec000 0x00008000>;
         };
 
         boot_partition: partition@f4000 {
-            label = "adafruit_boot";
             reg = <0x000f4000 0x0000c000>;
         };
     };
@@ -837,7 +981,6 @@
 
     led_strip: ws2812@0 {
         compatible = "worldsemi,ws2812-spi";
-        label = "WS2812";
 
 
         reg = <0>;
@@ -861,7 +1004,7 @@
 
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
-
+        wakeup-source;
         diode-direction = "col2row";
         row-gpios
             = <&gpio0 19 ((0 << 0) | (1 << 5))>
@@ -886,7 +1029,7 @@
     };
 };
 
-&default_transform {
+&matrix_transform0 {
         col-offset = <10>;
     };
 # 0 "<command-line>" 2
@@ -900,6 +1043,12 @@
 
 # 1 "/app/config/adv360.keymap" 1
 # 1 "/app/zmk/app/dts/behaviors.dtsi" 1 3 4
+
+
+
+
+
+
 # 1 "/app/zmk/app/dts/behaviors/key_press.dtsi" 1 3 4
 
 
@@ -907,17 +1056,22 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/key_press.dtsi" 2 3 4
+
 / {
     behaviors {
 
-        /omit-if-no-ref/ cp: kp: behavior_key_press {
+    /omit-if-no-ref/
+
+        kp: key_press {
             compatible = "zmk,behavior-key-press";
-            label = "KEY_PRESS";
             #binding-cells = <1>;
+            display-name = "Key Press";
         };
     };
 };
-# 2 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 8 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/key_toggle.dtsi" 1 3 4
 
 
@@ -925,16 +1079,22 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/key_toggle.dtsi" 2 3 4
+
 / {
     behaviors {
-        /omit-if-no-ref/ kt: behavior_key_toggle {
+
+    /omit-if-no-ref/
+
+        kt: key_toggle {
             compatible = "zmk,behavior-key-toggle";
-            label = "KEY_TOGGLE";
             #binding-cells = <1>;
+            display-name = "Key Toggle";
         };
     };
 };
-# 3 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 9 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/transparent.dtsi" 1 3 4
 
 
@@ -942,16 +1102,22 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/transparent.dtsi" 2 3 4
+
 / {
     behaviors {
-        /omit-if-no-ref/ trans: behavior_transparent {
+
+        /omit-if-no-ref/
+
+        trans: transparent {
             compatible = "zmk,behavior-transparent";
-            label = "TRANS";
             #binding-cells = <0>;
+            display-name = "Transparent";
         };
     };
 };
-# 4 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 10 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/none.dtsi" 1 3 4
 
 
@@ -959,16 +1125,22 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/none.dtsi" 2 3 4
+
 / {
     behaviors {
-        /omit-if-no-ref/ none: behavior_none {
+
+        /omit-if-no-ref/
+
+        none: none {
             compatible = "zmk,behavior-none";
-            label = "NONE";
             #binding-cells = <0>;
+            display-name = "None";
         };
     };
 };
-# 5 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 11 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/mod_tap.dtsi" 1 3 4
 
 
@@ -976,19 +1148,25 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/mod_tap.dtsi" 2 3 4
+
 / {
     behaviors {
-        /omit-if-no-ref/ mt: behavior_mod_tap {
+
+        /omit-if-no-ref/
+
+        mt: mod_tap {
             compatible = "zmk,behavior-hold-tap";
-            label = "MOD_TAP";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
             bindings = <&kp>, <&kp>;
+            display-name = "Mod-Tap";
         };
     };
 };
-# 6 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 12 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/layer_tap.dtsi" 1 3 4
 
 
@@ -996,19 +1174,25 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/layer_tap.dtsi" 2 3 4
+
 / {
     behaviors {
-        /omit-if-no-ref/ lt: behavior_layer_tap {
+
+        /omit-if-no-ref/
+
+        lt: layer_tap {
             compatible = "zmk,behavior-hold-tap";
-            label = "LAYER_TAP";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             bindings = <&mo>, <&kp>;
+            display-name = "Layer-Tap";
         };
     };
 };
-# 7 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 13 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/gresc.dtsi" 1 3 4
 
 
@@ -1016,6 +1200,9 @@
 
 
 
+
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 9 "/app/zmk/app/dts/behaviors/gresc.dtsi" 2 3 4
 # 1 "/app/zmk/app/include/dt-bindings/zmk/keys.h" 1 3 4
 
 
@@ -1040,20 +1227,23 @@
 
        
 # 11 "/app/zmk/app/include/dt-bindings/zmk/keys.h" 2 3 4
-# 8 "/app/zmk/app/dts/behaviors/gresc.dtsi" 2 3 4
+# 10 "/app/zmk/app/dts/behaviors/gresc.dtsi" 2 3 4
 
 / {
     behaviors {
-        /omit-if-no-ref/ gresc: grave_escape {
+
+        /omit-if-no-ref/
+
+        gresc: grave_escape {
             compatible = "zmk,behavior-mod-morph";
-            label = "GRAVE_ESCAPE";
             #binding-cells = <0>;
             bindings = <&kp (((((0x07) << 16) | (0x29))))>, <&kp ((((0x07) << 16) | (0x35)))>;
             mods = <(0x08|0x02|0x80|0x20)>;
+            display-name = "Grave/Escape";
         };
     };
 };
-# 8 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 14 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/sticky_key.dtsi" 1 3 4
 
 
@@ -1061,28 +1251,37 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/sticky_key.dtsi" 2 3 4
+
 / {
     behaviors {
-        /omit-if-no-ref/ sk: behavior_sticky_key {
+
+        /omit-if-no-ref/
+
+        sk: sticky_key {
             compatible = "zmk,behavior-sticky-key";
-            label = "STICKY_KEY";
             #binding-cells = <1>;
             release-after-ms = <1000>;
             bindings = <&kp>;
             ignore-modifiers;
+            display-name = "Sticky Key";
         };
-        /omit-if-no-ref/ sl: behavior_sticky_layer {
+
+        /omit-if-no-ref/
+
+        sl: sticky_layer {
             compatible = "zmk,behavior-sticky-key";
-            label = "STICKY_LAYER";
             #binding-cells = <1>;
             release-after-ms = <1000>;
             bindings = <&mo>;
             quick-release;
+            display-name = "Sticky Layer";
         };
     };
 
 };
-# 9 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 15 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/momentary_layer.dtsi" 1 3 4
 
 
@@ -1090,16 +1289,22 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/momentary_layer.dtsi" 2 3 4
+
 / {
     behaviors {
-        /omit-if-no-ref/ mo: behavior_momentary_layer {
+
+        /omit-if-no-ref/
+
+        mo: momentary_layer {
             compatible = "zmk,behavior-momentary-layer";
-            label = "MO";
             #binding-cells = <1>;
+            display-name = "Momentary Layer";
         };
     };
 };
-# 10 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 16 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/toggle_layer.dtsi" 1 3 4
 
 
@@ -1107,16 +1312,22 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/toggle_layer.dtsi" 2 3 4
+
 / {
     behaviors {
-        /omit-if-no-ref/ tog: behavior_toggle_layer {
+
+        /omit-if-no-ref/
+
+        tog: toggle_layer {
             compatible = "zmk,behavior-toggle-layer";
-            label = "TOGGLE_LAYER";
             #binding-cells = <1>;
+            display-name = "Toggle Layer";
         };
     };
 };
-# 11 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 17 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/to_layer.dtsi" 1 3 4
 
 
@@ -1124,16 +1335,22 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/to_layer.dtsi" 2 3 4
+
 / {
     behaviors {
-        /omit-if-no-ref/ to: behavior_to_layer {
+
+        /omit-if-no-ref/
+
+        to: to_layer {
             compatible = "zmk,behavior-to-layer";
-            label = "TO_LAYER";
             #binding-cells = <1>;
+            display-name = "To Layer";
         };
     };
 };
-# 12 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 18 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/reset.dtsi" 1 3 4
 
 
@@ -1146,21 +1363,23 @@
 
 / {
     behaviors {
-        sys_reset: behavior_reset {
+
+        sys_reset: sysreset {
             compatible = "zmk,behavior-reset";
-            label = "SYSRESET";
             #binding-cells = <0>;
+            display-name = "Reset";
         };
 
-        bootloader: behavior_reset_dfu {
+
+        bootloader: bootload {
             compatible = "zmk,behavior-reset";
-            label = "BOOTLOAD";
             type = <0x57>;
             #binding-cells = <0>;
+            display-name = "Bootloader";
         };
     };
 };
-# 13 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 19 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/sensor_rotate_key_press.dtsi" 1 3 4
 
 
@@ -1171,15 +1390,14 @@
 / {
     behaviors {
 
-        /omit-if-no-ref/ inc_dec_cp: inc_dec_kp: behavior_sensor_rotate_key_press {
+        /omit-if-no-ref/ inc_dec_cp: inc_dec_kp: enc_key_press {
             compatible = "zmk,behavior-sensor-rotate-var";
-            label = "ENC_KEY_PRESS";
             #sensor-binding-cells = <2>;
             bindings = <&kp>, <&kp>;
         };
     };
 };
-# 14 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 20 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/rgb_underglow.dtsi" 1 3 4
 
 
@@ -1189,14 +1407,15 @@
 
 / {
     behaviors {
-        rgb_ug: behavior_rgb_underglow {
+
+        rgb_ug: rgb_ug {
             compatible = "zmk,behavior-rgb-underglow";
-            label = "RGB_UG";
             #binding-cells = <2>;
+            display-name = "Underglow";
         };
     };
 };
-# 15 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 21 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/bluetooth.dtsi" 1 3 4
 
 
@@ -1204,16 +1423,22 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/bluetooth.dtsi" 2 3 4
+
 / {
     behaviors {
-        /omit-if-no-ref/ bt: behavior_bluetooth {
+
+        /omit-if-no-ref/
+
+        bt: bluetooth {
             compatible = "zmk,behavior-bluetooth";
-            label = "BLUETOOTH";
             #binding-cells = <2>;
+            display-name = "Bluetooth";
         };
     };
 };
-# 16 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 22 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/ext_power.dtsi" 1 3 4
 
 
@@ -1223,14 +1448,15 @@
 
 / {
     behaviors {
-        ext_power: behavior_ext_power {
+
+        ext_power: extpower {
             compatible = "zmk,behavior-ext-power";
-            label = "EXTPOWER";
             #binding-cells = <1>;
+            display-name = "External Power";
         };
     };
 };
-# 17 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 23 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/outputs.dtsi" 1 3 4
 
 
@@ -1238,42 +1464,72 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/outputs.dtsi" 2 3 4
+
 / {
     behaviors {
-        /omit-if-no-ref/ out: behavior_outputs {
+
+        /omit-if-no-ref/
+
+        out: outputs {
             compatible = "zmk,behavior-outputs";
-            label = "OUTPUTS";
             #binding-cells = <1>;
+            display-name = "Output Selection";
         };
     };
 };
-# 18 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 24 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/caps_word.dtsi" 1 3 4
-# 9 "/app/zmk/app/dts/behaviors/caps_word.dtsi" 3 4
+
+
+
+
+
+
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/caps_word.dtsi" 2 3 4
+
+
 / {
     behaviors {
-        /omit-if-no-ref/ caps_word: behavior_caps_word {
+
+        /omit-if-no-ref/
+
+        caps_word: caps_word {
             compatible = "zmk,behavior-caps-word";
-            label = "CAPS_WORD";
             #binding-cells = <0>;
             continue-list = <((0x02 << 24 | (((0x07) << 16) | (0x2D)))) ((((0x07) << 16) | (0x2A))) ((((0x07) << 16) | (0x4C)))>;
+            display-name = "Caps Word";
         };
     };
 };
-# 19 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 25 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/key_repeat.dtsi" 1 3 4
-# 9 "/app/zmk/app/dts/behaviors/key_repeat.dtsi" 3 4
+
+
+
+
+
+
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/key_repeat.dtsi" 2 3 4
+
+
 / {
     behaviors {
-        /omit-if-no-ref/ key_repeat: behavior_key_repeat {
+
+    /omit-if-no-ref/
+
+        key_repeat: key_repeat {
             compatible = "zmk,behavior-key-repeat";
-            label = "KEY_REPEAT";
             #binding-cells = <0>;
             usage-pages = <(0x07)>;
+            display-name = "Key Repeat";
         };
     };
 };
-# 20 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 26 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/backlight.dtsi" 1 3 4
 
 
@@ -1281,69 +1537,238 @@
 
 
 
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/backlight.dtsi" 2 3 4
+
  / {
     behaviors {
-        /omit-if-no-ref/ bl: behavior_backlight {
+
+        /omit-if-no-ref/
+
+
+        bl: bcklight {
             compatible = "zmk,behavior-backlight";
-            label = "BCKLGHT";
             #binding-cells = <2>;
+            display-name = "Backlight";
         };
     };
 };
-# 21 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 27 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 1 "/app/zmk/app/dts/behaviors/macros.dtsi" 1 3 4
-# 16 "/app/zmk/app/dts/behaviors/macros.dtsi" 3 4
- / {
+# 29 "/app/zmk/app/dts/behaviors/macros.dtsi" 3 4
+/ {
     behaviors {
-        macro_tap: macro_control_mode_tap {
+        macro_tap: macro_tap {
             compatible = "zmk,macro-control-mode-tap";
-            label = "MAC_TAP";
             #binding-cells = <0>;
         };
 
-        macro_press: macro_control_mode_press {
+        macro_press: macro_press {
             compatible = "zmk,macro-control-mode-press";
-            label = "MAC_PRESS";
             #binding-cells = <0>;
         };
 
-        macro_release: macro_control_mode_release {
+        macro_release: macro_release {
             compatible = "zmk,macro-control-mode-release";
-            label = "MAC_REL";
             #binding-cells = <0>;
         };
 
-        macro_tap_time: macro_control_tap_time {
+        macro_tap_time: macro_tap_time {
             compatible = "zmk,macro-control-tap-time";
-            label = "MAC_TAP_TIME";
             #binding-cells = <1>;
         };
 
-        macro_wait_time: macro_control_wait_time {
+        macro_wait_time: macro_wait_time {
             compatible = "zmk,macro-control-wait-time";
-            label = "MAC_WAIT_TIME";
             #binding-cells = <1>;
         };
 
         macro_pause_for_release: macro_pause_for_release {
             compatible = "zmk,macro-pause-for-release";
-            label = "MAC_WAIT_REL";
+            #binding-cells = <0>;
+        };
+
+        macro_param_1to1: macro_param_1to1 {
+            compatible = "zmk,macro-param-1to1";
+            #binding-cells = <0>;
+        };
+
+        macro_param_1to2: macro_param_1to2 {
+            compatible = "zmk,macro-param-1to2";
+            #binding-cells = <0>;
+        };
+
+        macro_param_2to1: macro_param_2to1 {
+            compatible = "zmk,macro-param-2to1";
+            #binding-cells = <0>;
+        };
+
+        macro_param_2to2: macro_param_2to2 {
+            compatible = "zmk,macro-param-2to2";
             #binding-cells = <0>;
         };
     };
 };
-# 22 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 28 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 1 "/app/zmk/app/dts/behaviors/soft_off.dtsi" 1 3 4
+
+
+
+
+
+
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/soft_off.dtsi" 2 3 4
+
+/ {
+    behaviors {
+
+        /omit-if-no-ref/
+
+        soft_off: z_so_off {
+            compatible = "zmk,behavior-soft-off";
+            #binding-cells = <0>;
+            split-peripheral-off-on-press;
+        };
+    };
+};
+# 29 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 1 "/app/zmk/app/dts/behaviors/studio_unlock.dtsi" 1 3 4
+
+
+
+
+
+
+/ {
+    behaviors {
+        studio_unlock: studio_unlock {
+            compatible = "zmk,behavior-studio-unlock";
+            #binding-cells = <0>;
+            display-name = "Studio Unlock";
+        };
+    };
+};
+# 30 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 1 "/app/zmk/app/dts/behaviors/mouse_keys.dtsi" 1 3 4
+
+
+
+
+
+
+# 1 "/app/zmk/app/dts/behaviors/mouse_key_press.dtsi" 1 3 4
+
+
+
+
+
+
+# 1 "/app/zmk/app/include/dt-bindings/zmk/behaviors.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/mouse_key_press.dtsi" 2 3 4
+
+/ {
+    behaviors {
+
+        /omit-if-no-ref/
+
+        mkp: mouse_key_press {
+            compatible = "zmk,behavior-mouse-key-press";
+            #binding-cells = <1>;
+        };
+    };
+
+    mkp_input_listener: mkp_input_listener {
+        compatible = "zmk,input-listener";
+        device = <&mkp>;
+    };
+};
+# 8 "/app/zmk/app/dts/behaviors/mouse_keys.dtsi" 2 3 4
+# 1 "/app/zmk/app/dts/behaviors/mouse_move.dtsi" 1 3 4
+
+
+
+
+
+
+# 1 "/app/zephyr/include/zephyr/dt-bindings/input/input-event-codes.h" 1 3 4
+# 8 "/app/zmk/app/dts/behaviors/mouse_move.dtsi" 2 3 4
+
+/ {
+    behaviors {
+        /omit-if-no-ref/ mmv: mouse_move {
+            compatible = "zmk,behavior-input-two-axis";
+            #binding-cells = <1>;
+            x-input-code = <0x00>;
+            y-input-code = <0x01>;
+            time-to-max-speed-ms = <300>;
+            acceleration-exponent = <1>;
+        };
+    };
+
+    mmv_input_listener: mmv_input_listener {
+        compatible = "zmk,input-listener";
+        device = <&mmv>;
+    };
+};
+# 9 "/app/zmk/app/dts/behaviors/mouse_keys.dtsi" 2 3 4
+# 1 "/app/zmk/app/dts/behaviors/mouse_scroll.dtsi" 1 3 4
+# 10 "/app/zmk/app/dts/behaviors/mouse_scroll.dtsi" 3 4
+/ {
+    behaviors {
+        /omit-if-no-ref/ msc: mouse_scroll {
+            compatible = "zmk,behavior-input-two-axis";
+            #binding-cells = <1>;
+            x-input-code = <0x06>;
+            y-input-code = <0x08>;
+            time-to-max-speed-ms = <300>;
+            acceleration-exponent = <0>;
+        };
+    };
+
+    msc_input_listener: msc_input_listener {
+        compatible = "zmk,input-listener";
+        device = <&msc>;
+    };
+};
+# 10 "/app/zmk/app/dts/behaviors/mouse_keys.dtsi" 2 3 4
+# 31 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
+# 1 "/app/zmk/app/dts/behaviors/stp_indicators.dtsi" 1 3 4
+/ {
+    behaviors {
+        stp: behavior_stp_indicators {
+            compatible = "zmk,behavior-stp-indicators";
+            display-name = "Battery Level";
+            #binding-cells = <1>;
+        };
+    };
+};
+# 32 "/app/zmk/app/dts/behaviors.dtsi" 2 3 4
 # 2 "/app/config/adv360.keymap" 2
 
 # 1 "/app/zmk/app/include/dt-bindings/zmk/bt.h" 1 3 4
 # 4 "/app/config/adv360.keymap" 2
 # 1 "/app/zmk/app/include/dt-bindings/zmk/rgb.h" 1 3 4
 # 5 "/app/config/adv360.keymap" 2
-# 1 "/app/zmk/app/include/dt-bindings/zmk/backlight.h" 1 3 4
+# 1 "/app/zmk/app/include/dt-bindings/zmk/stp.h" 1 3 4
+       
+
+
+
+# 1 "/app/zmk/app/include/dt-bindings/zmk/pointing.h" 1 3 4
+
+
+
+
+
+       
+# 6 "/app/zmk/app/include/dt-bindings/zmk/stp.h" 2 3 4
 # 6 "/app/config/adv360.keymap" 2
-# 21 "/app/config/adv360.keymap"
+# 1 "/app/zmk/app/include/dt-bindings/zmk/backlight.h" 1 3 4
+# 7 "/app/config/adv360.keymap" 2
+# 23 "/app/config/adv360.keymap"
 &sl { release-after-ms = <999999>; };
-# 83 "/app/config/adv360.keymap"
+# 87 "/app/config/adv360.keymap"
 / {
   behaviors {
 # 1 "/app/config/macros.dtsi" 1
@@ -1383,42 +1808,238 @@
     #binding-cells = <0>;
     bindings = <&kp (0x02 << 24 | ((((0x07) << 16) | (0x0E))))>, <&kp ((((0x07) << 16) | (0x0C)))>, <&kp ((((0x07) << 16) | (0x11)))>, <&kp ((((0x07) << 16) | (0x08)))>, <&kp ((((0x07) << 16) | (0x16)))>, <&kp ((((0x07) << 16) | (0x0C)))>, <&kp ((((0x07) << 16) | (0x16)))>;
   };
-# 86 "/app/config/adv360.keymap" 2
+  Win_Cut: Windows_Cut {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x1B))))>;
+    display-name = "Windows Cut";
+  };
 
-    NPRG_SP: NPRG_SP { label = "ZM_NPRG_SP"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x36))) &kp ((((0x07) << 16) | (0x2C))) &to 0>; };
-# 103 "/app/config/adv360.keymap"
-    NPRG_H00: NPRG_H00 { label = "ZM_NPRG_H00"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x08)))) &kp (((((0x07) << 16) | (0x28)))) &to 0>; };
-    NPRG_H11: NPRG_H11 { label = "ZM_NPRG_H11"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x08)))) &kp ((((0x07) << 16) | (0x2C))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2F))))) &kp (((((0x07) << 16) | (0x28)))) &to 0>; };
-# 119 "/app/config/adv360.keymap"
-    SPRG_H00: SPRG_H00 { label = "ZM_SPRG_H00"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x08)))) &kp (((((0x07) << 16) | (0x33)))) &kp (((((0x07) << 16) | (0x28)))) &to 0>; };
-    SPRG_H11: SPRG_H11 { label = "ZM_SPRG_H11"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x08)))) &kp ((((0x07) << 16) | (0x2C))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2F))))) &to 0>; };
+  Win_Copy: Windows_Copy {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x06))))>;
+    display-name = "Windows Copy";
+  };
 
-    SPRG_H02: SPRG_H02 { label = "ZM_SPRG_H02"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &to 0>; };
-    SPRG_H04: SPRG_H04 { label = "ZM_SPRG_H04"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
-    SPRG_H05: SPRG_H05 { label = "ZM_SPRG_H05"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &kp ((((0x07) << 16) | (0x14))) &to 0>; };
-    SPRG_H08: SPRG_H08 { label = "ZM_SPRG_H08"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((((0x07) << 16) | (0x2F)))) &kp (((((0x07) << 16) | (0x30)))) &to 0>; };
-    SPRG_H09: SPRG_H09 { label = "ZM_SPRG_H09"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2D))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x37))))) &to 0>; };
-    SPRG_H10: SPRG_H10 { label = "ZM_SPRG_H10"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x1E))))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
+  Win_Paste: Windows_Paste {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x19))))>;
+    display-name = "Windows Paste";
+  };
 
-    SPRG_M01: SPRG_M01 { label = "ZM_SPRG_M01"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((((0x07) << 16) | (0x38)))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
-    SPRG_M02: SPRG_M02 { label = "ZM_SPRG_M02"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x26))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x27))))) &to 0>; };
-    SPRG_M03: SPRG_M03 { label = "ZM_SPRG_M03"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2E))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
-    SPRG_M05: SPRG_M05 { label = "ZM_SPRG_M05"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x2F))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x30))))) &to 0>; };
-    SPRG_M07: SPRG_M07 { label = "ZM_SPRG_M07"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &to 0>; };
-    SPRG_M10: SPRG_M10 { label = "ZM_SPRG_M10"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2D))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
+  Win_Select_All: Windows_SelectAll {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x04))))>;
+      display-name = "Windows Select All";
+  };
 
-    SPRG_L05: SPRG_L05 { label = "ZM_SPRG_L05"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &to 0>; };
-    SPRG_L08: SPRG_L08 { label = "ZM_SPRG_L08"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x36))))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
-    SPRG_L09: SPRG_L09 { label = "ZM_SPRG_L09"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x37))))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
-# 153 "/app/config/adv360.keymap"
-    CPRG_H00: CPRG_H00 { label = "ZM_CPRG_H00"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x08)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &kp (((((0x07) << 16) | (0x28)))) &to 0>; };
+  Win_Undo: Windows_Undo {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x1D))))>;
+    display-name = "Windows Undo";
+  };
 
-    CPRG_H04: CPRG_H04 { label = "ZM_CPRG_H04"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &to 0>; };
-    CPRG_H05: CPRG_H05 { label = "ZM_CPRG_H05"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &to 0>; };
+  Win_Desktop: Win_Desk {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x07))))>;
+    display-name = "Windows Desktop";
+  };
 
-    CPRG_M03: CPRG_M03 { label = "ZM_CPRG_M03"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2E))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x37))))) &to 0>; };
-    CPRG_M07: CPRG_M07 { label = "ZM_CPRG_M07"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
-    CPRG_M10: CPRG_M10 { label = "ZM_CPRG_M10"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2D))) &kp ((((0x07) << 16) | (0x2D))) &to 0>; };
+  Win_File_Explorer: Win_Explr {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x08))))>;
+    display-name = "Windows Explorer";
+  };
+
+  Win_Snip_Tool: Win_Snip {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x02 << 24 | (0x08 << 24 | ((((0x07) << 16) | (0x16)))))>;
+    display-name = "Windows Screen Snip";
+  };
+
+  Win_Show_All_Windows: Win_ShowAW {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x2B))))>;
+    display-name = "Windows Show All Windows";
+  };
+
+  Mac_Cut: Mac_Cut {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x1B))))>;
+    display-name = "Mac Cut";
+  };
+
+  Mac_Copy: Mac_Copy {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x06))))>;
+    display-name = "Mac Copy";
+  };
+
+  Mac_Paste: Mac_Paste {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x19))))>;
+    display-name = "Mac Paste";
+  };
+
+  Mac_Undo: Mac_Undo {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x1D))))>;
+    display-name = "Mac Undo";
+  };
+
+  Mac_Select_All: Mac_SelAll {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x04))))>;
+    display-name = "Mac Select All";
+  };
+
+  Mac_Mission_Control: Mac_ShowAW {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x52))))>;
+    display-name = "Mac Show All Windows";
+  };
+
+  Mac_Snip_Tool: Mac_Snip {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x01 << 24 | (0x08 << 24 | (0x02 << 24 | ((((0x07) << 16) | (0x21))))))>;
+    display-name = "Mac Screen Snip";
+  };
+
+  Win_Close_Program: Win_Close_Program {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x04 << 24 | ((((0x07) << 16) | (0x3D))))>;
+    display-name = "Windows Close";
+  };
+
+  Win_Settings_Menu: Win_Settings_Menu {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x0C))))>;
+    display-name = "Windows Settings";
+  };
+
+  Win_Lock_PC: Win_Lock_PC {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x0F))))>;
+    display-name = "Windows Lock";
+  };
+
+  Win_Tile_Left: Win_Tile_Left {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | (((((0x07) << 16) | (0x50)))))>;
+    display-name = "Windows Tile Left";
+  };
+
+  Win_Tile_Up: Win_Tile_Up {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x52))))>;
+    display-name = "Windows Tile Up";
+  };
+
+  Win_Tile_Down: Win_Tile_Down {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | (((((0x07) << 16) | (0x51)))))>;
+    display-name = "Windows Tile Down";
+  };
+
+  Win_Tile_Right: Win_Tile_Right {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | (((((0x07) << 16) | (0x4F)))))>;
+    display-name = "Windows Tile Right";
+  };
+
+  Mac_Spotlight_Search: Mac_Spotlight_Search {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x2C))))>;
+    display-name = "Mac Spotlight Search";
+  };
+
+  Mac_Close_Program: Mac_Close_Program {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | ((((0x07) << 16) | (0x14))))>;
+    display-name = "Mac Close Program";
+  };
+
+  Mac_Strike_Through_Text: Mac_Strike_Through_Text {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&kp (0x08 << 24 | (0x02 << 24 | ((((0x07) << 16) | (0x1B)))))>;
+    display-name = "Mac Strikethrough Text";
+  };
+
+  Double_Click: Double_Click {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&mkp (1UL << (0)) &mkp (1UL << (0))>;
+    display-name = "Double Click";
+  };
+# 90 "/app/config/adv360.keymap" 2
+# 1 "/app/config/version.dtsi" 1
+
+macro_ver: macro_ver {
+compatible = "zmk,behavior-macro";
+#binding-cells = <0>;
+bindings = <&kp (((((0x07) << 16) | (0x1F))))>, <&kp (((((0x07) << 16) | (0x27))))>, <&kp (((((0x07) << 16) | (0x1F))))>, <&kp (((((0x07) << 16) | (0x22))))>, <&kp (((((0x07) << 16) | (0x27))))>, <&kp (((((0x07) << 16) | (0x21))))>, <&kp (((((0x07) << 16) | (0x1E))))>, <&kp (((((0x07) << 16) | (0x22))))>, <&kp ((((0x07) << 16) | (0x2D)))>, <&kp ((((0x07) << 16) | (0x19)))>, <&kp (((((0x07) << 16) | (0x20))))>, <&kp (((((0x07) << 16) | (0x37))))>, <&kp (((((0x07) << 16) | (0x27))))>, <&kp ((((0x07) << 16) | (0x2D)))>, <&kp ((((0x07) << 16) | (0x07)))>, <&kp (((((0x07) << 16) | (0x26))))>, <&kp (((((0x07) << 16) | (0x22))))>, <&kp (((((0x07) << 16) | (0x26))))>, <&kp (((((0x07) << 16) | (0x20))))>, <&kp ((((0x07) << 16) | (0x09)))>, <&kp (((((0x07) << 16) | (0x23))))>, <&kp ((((0x07) << 16) | (0x2D)))>, <&kp ((((0x07) << 16) | (0x06)))>, <&kp ((((0x07) << 16) | (0x0F)))>, <&kp ((((0x07) << 16) | (0x0C)))>, <&kp ((((0x07) << 16) | (0x14)))>, <&kp ((((0x07) << 16) | (0x18)))>, <&kp ((((0x07) << 16) | (0x08)))>, <&kp (((((0x07) << 16) | (0x28))))>;
+};
+# 91 "/app/config/adv360.keymap" 2
+
+    NPRG_SP: NPRG_SP { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x36))) &kp ((((0x07) << 16) | (0x2C))) &to 0>; };
+# 108 "/app/config/adv360.keymap"
+    NPRG_H00: NPRG_H00 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x08)))) &kp (((((0x07) << 16) | (0x28)))) &to 0>; };
+    NPRG_H11: NPRG_H11 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x08)))) &kp ((((0x07) << 16) | (0x2C))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2F))))) &kp (((((0x07) << 16) | (0x28)))) &to 0>; };
+# 124 "/app/config/adv360.keymap"
+    SPRG_H00: SPRG_H00 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x08)))) &kp (((((0x07) << 16) | (0x33)))) &kp (((((0x07) << 16) | (0x28)))) &to 0>; };
+    SPRG_H11: SPRG_H11 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x08)))) &kp ((((0x07) << 16) | (0x2C))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2F))))) &to 0>; };
+
+    SPRG_H02: SPRG_H02 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &to 0>; };
+    SPRG_H04: SPRG_H04 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
+    SPRG_H05: SPRG_H05 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &kp ((((0x07) << 16) | (0x14))) &to 0>; };
+    SPRG_H08: SPRG_H08 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((((0x07) << 16) | (0x2F)))) &kp (((((0x07) << 16) | (0x30)))) &to 0>; };
+    SPRG_H09: SPRG_H09 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2D))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x37))))) &to 0>; };
+    SPRG_H10: SPRG_H10 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x1E))))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
+
+    SPRG_M01: SPRG_M01 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((((0x07) << 16) | (0x38)))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
+    SPRG_M02: SPRG_M02 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x26))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x27))))) &to 0>; };
+    SPRG_M03: SPRG_M03 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2E))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
+    SPRG_M05: SPRG_M05 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x2F))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x30))))) &to 0>; };
+    SPRG_M07: SPRG_M07 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &to 0>; };
+    SPRG_M10: SPRG_M10 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2D))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
+
+    SPRG_L05: SPRG_L05 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x31)))) &to 0>; };
+    SPRG_L08: SPRG_L08 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x36))))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
+    SPRG_L09: SPRG_L09 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x37))))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
+# 158 "/app/config/adv360.keymap"
+    CPRG_H00: CPRG_H00 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (0x01 << 24 | ((((0x07) << 16) | (0x08)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &kp (((((0x07) << 16) | (0x28)))) &to 0>; };
+
+    CPRG_H04: CPRG_H04 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &to 0>; };
+    CPRG_H05: CPRG_H05 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &to 0>; };
+
+    CPRG_M03: CPRG_M03 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2E))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x37))))) &to 0>; };
+    CPRG_M07: CPRG_M07 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((0x02 << 24 | (((0x07) << 16) | (0x33)))) &kp ((((0x07) << 16) | (0x2E))) &to 0>; };
+    CPRG_M10: CPRG_M10 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp ((((0x07) << 16) | (0x2D))) &kp ((((0x07) << 16) | (0x2D))) &to 0>; };
 
     hm: homerow_mods {
       compatible = "zmk,behavior-hold-tap";
@@ -1437,6 +2058,7 @@
 
     default_layer {
 
+      display-name = "Base";
       bindings = <
         &kp ((((0x07) << 16) | (0x2E))) &kp (((((0x07) << 16) | (0x1E)))) &kp (((((0x07) << 16) | (0x1F)))) &kp (((((0x07) << 16) | (0x20)))) &kp (((((0x07) << 16) | (0x21)))) &kp (((((0x07) << 16) | (0x22)))) &mo 5 &mo 5 &kp (((((0x07) << 16) | (0x23)))) &kp (((((0x07) << 16) | (0x24)))) &kp (((((0x07) << 16) | (0x25)))) &kp (((((0x07) << 16) | (0x26)))) &kp (((((0x07) << 16) | (0x27)))) &kp ((((0x07) << 16) | (0x2D)))
         &kp ((((0x07) << 16) | (0x2B))) &kp ((((0x07) << 16) | (0x14))) &kp ((((0x07) << 16) | (0x1A))) &kp ((((0x07) << 16) | (0x07))) &kp ((((0x07) << 16) | (0x09))) &kp ((((0x07) << 16) | (0x0E))) &none &none &kp ((((0x07) << 16) | (0x0D))) &kp ((((0x07) << 16) | (0x18))) &kp ((((0x07) << 16) | (0x15))) &kp ((((0x07) << 16) | (0x0F))) &kp (((((0x07) << 16) | (0x29)))) &kp (((((0x07) << 16) | (0x31))))
@@ -1452,6 +2074,7 @@
 
     programming_layer {
 
+      display-name = "Programming";
       bindings = <
         &none &none &none &none &none &none &none &none &none &none &none &none &none &none
         &NPRG_H00 &kp (((0x02 << 24 | (((0x07) << 16) | (0x22))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x24))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x38))))) &kp ((0x02 << 24 | (((0x07) << 16) | (0x2E)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1F))))) &none &none &kp (((0x02 << 24 | (((0x07) << 16) | (0x21))))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x2D))))) &kp (((((0x07) << 16) | (0x2F)))) &kp (((((0x07) << 16) | (0x30)))) &kp (((0x02 << 24 | (((0x07) << 16) | (0x1E))))) &NPRG_H11
@@ -1467,6 +2090,7 @@
 
     programming_layer_shift {
 
+      display-name = "Programming Shift";
       bindings = <
         &trans &trans &trans &trans &trans &trans &none &none &trans &trans &trans &trans &trans &trans
         &SPRG_H00 &none &SPRG_H02 &none &SPRG_H04 &SPRG_H05 &none &none &none &none &SPRG_H08 &SPRG_H09 &SPRG_H10 &SPRG_H11
@@ -1512,6 +2136,7 @@
 
     mod {
 
+      display-name = "Mod";
       bindings = <
         &none &bt 3 0 &bt 3 1 &bt 3 2 &bt 3 3 &bt 3 4 &trans &trans &none &none &none &none &none &none
         &none &none &none &none &none &none &bootloader &bootloader &none &none &none &none &none &none
@@ -1523,6 +2148,25 @@
                             &none &none
         &none &none &none &none &bl 2 0 &rgb_ug 0 0
       >;
+    };
+    extra1 {
+      display-name = "Red";
+      status = "reserved";
+    };
+
+    extra2 {
+      display-name = "Purple";
+      status = "reserved";
+    };
+
+    extra3 {
+      display-name = "Cyan";
+      status = "reserved";
+    };
+
+    extra4 {
+      display-name = "Yellow";
+      status = "reserved";
     };
   };
 };
